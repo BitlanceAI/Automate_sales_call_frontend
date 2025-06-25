@@ -1,0 +1,65 @@
+{
+  "sidebar": [
+    {
+      "id": "getstarted",
+      "text": "Getting Started",
+      "isShow": true,
+      "list": [
+        {
+          "id": "seo-tool-sec",
+          "text": "Automate SEO Content"
+        },
+        {
+          "id": "smm-tool-sec",
+          "text": "Generate SMM Posts"
+        },
+        {
+          "id": "sales-tool-sec",
+          "text": "Create Sales Outreach"
+        },
+        {
+          "id": "chatbot-tool-sec",
+          "text": "Deploy AI Chatbot"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "text": "Plans & Pricing",
+      "isShow": false,
+      "list": [
+        {
+          "id": "pricing-basic",
+          "text": "Basic Plan Overview"
+        },
+        {
+          "id": "pricing-pro",
+          "text": "Pro Plan Overview"
+        },
+        {
+          "id": "pricing-custom",
+          "text": "Enterprise Customization"
+        }
+      ]
+    },
+    {
+      "id": "corefeature",
+      "text": "Core Features",
+      "isShow": false,
+      "list": [
+        {
+          "id": "core-seo",
+          "text": "AI SEO Writer"
+        },
+        {
+          "id": "core-smm",
+          "text": "SMM Content Calendar"
+        },
+        {
+          "id": "core-sales",
+          "text": "Cold Email Generator"
+        }
+      ]
+    }
+  ]
+}

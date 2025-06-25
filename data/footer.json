@@ -1,0 +1,63 @@
+{
+  "footer": [
+    {
+      "links": [
+        {
+          "title": "Quick Links",
+          "innerItem": [
+            {
+              "link": "#",
+              "text": "Pages"
+            },
+            {
+              "link": "/blog",
+              "text": "Blog"
+            },
+            {
+              "link": "/contact",
+              "text": "Contact"
+            },
+            {
+              "link": "/utilize",
+              "text": "How to use"
+            },
+            {
+              "link": "/roadmap",
+              "text": "Roadmap"
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "title": "Tools",
+          "innerItem": [
+            {
+              "link": "/seo-automation",
+              "text": "SEO Automation"
+            },
+            {
+              "link": "/smm-automation",
+              "text": "SMM Automation"
+            },
+            {
+              "link": "/sales-automation",
+              "text": "Sales Automation"
+            },
+            {
+              "link": "/chatbot-automation",
+              "text": "Chatbot Automation"
+            }
+          ]
+        }
+      ],
+      "contact": [
+        {
+          "location": "Blue Ridge Town Pune, Phase 1, Hinjawadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Pimpri-Chinchwad, Maharashtra 411057",
+          "mail": "ceo@bitlancetechhub",
+          "number": "7391025059"
+        }
+      ]
+    }
+  ]
+}
