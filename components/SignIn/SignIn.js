@@ -28,11 +28,19 @@ const SignIn = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const redirectAfterLogin = () => {
+    const intendedPath = localStorage.getItem("intendedPath") || "/automate-sales-call";
+    localStorage.removeItem("intendedPath");
+    router.push(intendedPath);
+  };
+
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      router.push("/tools");
+      localStorage.setItem("isLoggedIn", "true");
+      redirectAfterLogin();
     } catch (err) {
+      console.error(err);
       setError("Google sign-in failed. Please try again.");
     }
   };
@@ -43,8 +51,10 @@ const SignIn = () => {
 
     try {
       await signInWithEmailAndPassword(auth, form.email, form.password);
-      router.push("/tools");
+      localStorage.setItem("isLoggedIn", "true");
+      redirectAfterLogin();
     } catch (err) {
+      console.error(err);
       setError("Invalid credentials. Please check and try again.");
     }
   };
@@ -72,7 +82,9 @@ const SignIn = () => {
 
                   <div className="signup-box-bottom">
                     <div className="signup-box-content">
-                      {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
+                      {error && (
+                        <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>
+                      )}
 
                       <div className="social-btn-grp">
                         <button
@@ -179,9 +191,7 @@ const SignIn = () => {
                           Bitlance's tools made our workflow smoother! We can now collaborate easily across departments.
                         </p>
                         <div className="bottom-content">
-                          <div className="meta-info-section">
-                            
-                          </div>
+                          <div className="meta-info-section"></div>
                         </div>
                       </div>
                     </div>

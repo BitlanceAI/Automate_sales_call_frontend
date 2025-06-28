@@ -32,8 +32,8 @@ const Contact = () => {
                             aria-controls="image-genarator"
                             aria-selected="true"
                           >
-                            <span className="title">AI Image</span>
-                            <span className="title">Generator</span>
+                            <span className="title">SEO</span>
+                            <span className="title">Automation</span>
                           </a>
                         </li>
                         <li role="presentation">
@@ -47,8 +47,8 @@ const Contact = () => {
                             aria-controls="photo-editor"
                             aria-selected="true"
                           >
-                            <span className="title">AI Photo</span>
-                            <span className="title">Generator</span>
+                            <span className="title">SMM</span>
+                            <span className="title">Automation</span>
                           </a>
                         </li>
                         <li role="presentation">
@@ -62,8 +62,8 @@ const Contact = () => {
                             aria-controls="email-genarator"
                             aria-selected="true"
                           >
-                            <span className="title">AI Email</span>
-                            <span className="title">Generator</span>
+                            <span className="title">Sales</span>
+                            <span className="title">Automation</span>
                           </a>
                         </li>
                         <li role="presentation">
@@ -77,8 +77,23 @@ const Contact = () => {
                             aria-controls="code-genarator"
                             aria-selected="true"
                           >
-                            <span className="title">AI Code</span>
-                            <span className="title">Generator</span>
+                            <span className="title">Chatbot</span>
+                            <span className="title">Automation</span>
+                          </a>
+                        </li>
+                        <li role="presentation">
+                          <a
+                            href="#"
+                            className="tab-button"
+                            id="code-genarator-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#code-genarator"
+                            role="tab"
+                            aria-controls="code-genarator"
+                            aria-selected="true"
+                          >
+                            <span className="title">Customer Sentiment</span>
+                            <span className="title">Analysis</span>
                           </a>
                         </li>
                       </ul>
@@ -129,7 +144,7 @@ const Contact = () => {
                   <div className="inner">
                     <h4 className="title">Location</h4>
                     <p className="b2">
-                      100 avenue of the moon, 12 new <br /> York, ny 1001B US.
+                      Blue Ridge Town Pune, Phase 1, Hinjawadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Pimpri-Chinchwad, Maharashtra 411057
                     </p>
                   </div>
                 </div>
@@ -140,10 +155,10 @@ const Contact = () => {
                   <div className="inner">
                     <h4 className="title">Contact Number</h4>
                     <p className="b2">
-                      <Link href="#">+444 555 666 777</Link>
+                      <Link href="#">7391025059</Link>
                     </p>
                     <p className="b2">
-                      <Link href="#">+222 222 222 333</Link>
+                      <Link href="#"></Link>
                     </p>
                   </div>
                 </div>
@@ -154,11 +169,11 @@ const Contact = () => {
                   <div className="inner">
                     <h4 className="title">Our Email Address</h4>
                     <p className="b2">
-                      <Link href="mailto:admin@gmail.com">admin@gmail.com</Link>
+                      <Link href="mailto:admin@gmail.com">ceo@bitlancetechhub.com</Link>
                     </p>
                     <p className="b2">
                       <Link href="mailto:example@gmail.com">
-                        example@gmail.com
+                       
                       </Link>
                     </p>
                   </div>

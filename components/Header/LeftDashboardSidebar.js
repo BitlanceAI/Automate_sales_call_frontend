@@ -13,56 +13,58 @@ import { useAppContext } from "@/context/Context";
 
 const LeftSidebar = () => {
   const pathname = usePathname();
-  const { shouldCollapseLeftbar, isLightTheme, toggleTheme } = useAppContext();
+  const { shouldCollapseLeftbar, isLightTheme, toggleTheme, user } = useAppContext();
 
   const isActive = (href) => pathname.startsWith(href);
+
   return (
     <>
-      <div
-        className={`rbt-left-panel popup-dashboardleft-section ${
-          shouldCollapseLeftbar ? "collapsed" : ""
-        }`}
-      >
+      <div className={`rbt-left-panel popup-dashboardleft-section ${shouldCollapseLeftbar ? "collapsed" : ""}`}>
         <div className="rbt-default-sidebar">
           <div className="inner">
             <div className="content-item-content">
               <div className="rbt-default-sidebar-wrapper">
                 <nav className="mainmenu-nav">
                   <ul className="dashboard-mainmenu rbt-default-sidebar-list">
-                    {SmallNavItem &&
-                      SmallNavItem.smallNavItem
-                        .slice(0, 7)
-                        .map((data, index) => (
-                          <li key={index}>
-                            <Link
-                              className={
-                                isActive(data.link)
-                                  ? "active"
-                                  : "" || data.isDisable
-                                  ? "disabled"
-                                  : ""
-                              }
-                              href={data.link}
-                            >
-                              <Image
-                                src={data.img}
-                                width={35}
-                                height={35}
-                                alt="AI Generator"
-                              />
-                              <span>{data.text}</span>
-                              {data.badge !== "" ? (
-                                <div className="rainbow-badge-card badge-sm ml--10">
-                                  {data.badge}
-                                </div>
-                              ) : (
-                                ""
-                              )}
-                            </Link>
-                          </li>
-                        ))}
+                    {SmallNavItem?.smallNavItem?.slice(0, 7).map((data, index) => (
+                      <li key={index}>
+                        <Link
+                          className={
+                            isActive(data.link)
+                              ? "active"
+                              : "" || data.isDisable
+                              ? "disabled"
+                              : ""
+                          }
+                          href={data.link}
+                        >
+                          <Image src={data.img} width={35} height={35} alt="AI Generator" />
+                          <span>{data.text}</span>
+                          {data.badge && (
+                            <div className="rainbow-badge-card badge-sm ml--10">{data.badge}</div>
+                          )}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
+
+                  {/* User Profile Info */}
+                  {user && (
+                    <div className="user-info text-center mt--20 mb--10">
+                      <Image
+                        src={user.photoURL || avatar}
+                        alt="User"
+                        width={48}
+                        height={48}
+                        className="rounded-circle mb--10"
+                      />
+                      <div className="b3 fw-bold">{user.displayName}</div>
+                      <div className="b4 text-muted">{user.email}</div>
+                    </div>
+                  )}
+
                   <div className="rbt-sm-separator"></div>
+
                   <div className="mainmenu-nav">
                     <ul className="dashboard-mainmenu rbt-default-sidebar-list">
                       <li className="has-submenu">
@@ -79,30 +81,19 @@ const LeftSidebar = () => {
                         </a>
                         <div className="collapse" id="collapseExampleMenu">
                           <ul className="submenu rbt-default-sidebar-list">
-                            {SmallNavItem &&
-                              SmallNavItem.smallNavItem
-                                .slice(7, 14)
-                                .map((data, index) => (
-                                  <li key={index}>
-                                    <Link
-                                      href={data.link}
-                                      className={
-                                        isActive(data.link) ? "active" : ""
-                                      }
-                                    >
-                                      <i className={`feather-${data.icon}`}></i>
-                                      <span>{data.text}</span>
-                                    </Link>
-                                  </li>
-                                ))}
+                            {SmallNavItem?.smallNavItem?.slice(7, 14).map((data, index) => (
+                              <li key={index}>
+                                <Link href={data.link} className={isActive(data.link) ? "active" : ""}>
+                                  <i className={`feather-${data.icon}`}></i>
+                                  <span>{data.text}</span>
+                                </Link>
+                              </li>
+                            ))}
                           </ul>
                         </div>
                       </li>
                       <li>
-                        <Link
-                          href="/help"
-                          className={isActive("/help") ? "active" : ""}
-                        >
+                        <Link href="/help" className={isActive("/help") ? "active" : ""}>
                           <i className="feather-award"></i>
                           <span>Help & FAQ</span>
                         </Link>
@@ -112,19 +103,13 @@ const LeftSidebar = () => {
                     <div className="rbt-sm-separator"></div>
                     <ul className="dashboard-mainmenu rbt-default-sidebar-list">
                       <li>
-                        <Link
-                          href="/release-notes"
-                          className={isActive("/release-notes") ? "active" : ""}
-                        >
+                        <Link href="/release-notes" className={isActive("/release-notes") ? "active" : ""}>
                           <i className="feather-bell"></i>
                           <span>Release notes</span>
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          href="/terms-policy"
-                          className={isActive("/terms-policy") ? "active" : ""}
-                        >
+                        <Link href="/terms-policy" className={isActive("/terms-policy") ? "active" : ""}>
                           <i className="feather-briefcase"></i>
                           <span>Terms & Policy</span>
                         </Link>
@@ -136,54 +121,23 @@ const LeftSidebar = () => {
             </div>
           </div>
 
-          <div className="subscription-box">
-            <div className="inner">
-              <Link href="/profile-details" className="autor-info">
-                <div className="author-img active">
-                  <Image
-                    className="w-100"
-                    width={49}
-                    height={48}
-                    src={avatar}
-                    alt="Author"
-                  />
-                </div>
-                <div className="author-desc">
-                  <h6>RainbowIT</h6>
-                  <p>trentadam@net</p>
-                </div>
-                <div className="author-badge">Free</div>
-              </Link>
-              <div className="btn-part">
-                <Link href="/pricing" className="btn-default btn-border">
-                  Upgrade To Pro
-                </Link>
-              </div>
-            </div>
-          </div>
+          {/* Theme Toggle */}
           <div className="switcher-btn-gr inner-switcher">
-            <button
-              className={`${isLightTheme ? "active" : ""}`}
-              onClick={toggleTheme}
-            >
-              <Image src={dark} alt="Switcher Image" />
+            <button className={`${isLightTheme ? "active" : ""}`} onClick={toggleTheme}>
+              <Image src={dark} alt="Dark Theme" />
               <span className="text">Dark</span>
             </button>
-            <button
-              className={`${!isLightTheme ? "active" : ""}`}
-              onClick={toggleTheme}
-            >
-              <Image src={light} alt="Switcher Image" />
+            <button className={`${!isLightTheme ? "active" : ""}`} onClick={toggleTheme}>
+              <Image src={light} alt="Light Theme" />
               <span className="text">Light</span>
             </button>
           </div>
+
+          {/* Footer */}
           <p className="subscription-copyright copyright-text text-center b3  small-text">
             © 2025
-            <Link
-              className="ps-2"
-              href="https://themeforest.net/user/rainbow-themes/portfolio"
-            >
-              Rainbow Themes
+            <Link className="ps-2" href="https://themeforest.net/user/rainbow-themes/portfolio">
+              Bitlance Tech Hub
             </Link>
             .
           </p>

@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Sora } from "next/font/google";
+import Script from "next/script"; // ✅ Import Script
 import Loading from "./loading";
+import Context from "@/context/Context";
 
 // Import Bootstrap JS
 import "bootstrap/scss/bootstrap.scss";
@@ -45,8 +47,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={sora.className} suppressHydrationWarning={true}>
-        {loading ? <Loading /> : children}
-        <BackToTop/>
+        {/* ✅ Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-JFNVQ2FCTY"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JFNVQ2FCTY');
+          `}
+        </Script>
+
+        <Context>
+          {loading ? <Loading /> : children}
+          <BackToTop />
+        </Context>
       </body>
     </html>
   );

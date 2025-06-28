@@ -12,10 +12,6 @@
     {
       "link": "/plans-billing",
       "text": "Plans and Billing"
-    },
-    {
-      "link": "/sessions",
-      "text": "Sessions"
     }
   ],
   "nav": [
@@ -45,7 +41,7 @@
           "badge": ""
         },
         {
-          "link": "/code-generator",
+          "link": "/automate-sales-call",
           "isDisable": false,
           "title": "Sales Automation",
           "badge": ""
@@ -56,12 +52,18 @@
           "isDisable": false,
           "title": "Chatbot Automation",
           "badge": ""
+        },
+        {
+          "link": "/vedio-generator",
+          "isDisable": false,
+          "title": "Customer Sentiment Analysis",
+          "badge": ""
         }
       ]
     },
     {
       "link": "#",
-      "text": "Pages",
+      "text": "Help",
       "isIcon": true,
       "isMenu": true,
       "megamenu": true,
@@ -140,12 +142,6 @@
           "isComing": false
         },
         {
-          "link": "/sessions",
-          "text": "Sessions",
-          "badge": "",
-          "isComing": false
-        },
-        {
           "link": "/application",
           "text": "Application",
           "badge": "",
@@ -183,44 +179,37 @@
   ],
   "smallNavItem": [
     {
-      "link": "/text-generator",
-      "isDisable": false,
-      "type": "default",
-      "img": "/images/generator-icon/text.png",
-      "text": "Text Generator",
-      "badge": "",
-      "icon": ""
-    },
-    {
       "link": "/image-generator",
       "isDisable": false,
       "type": "default",
       "img": "/images/generator-icon/photo.png",
-      "text": "Image Generator",
+      "text": "SEO Automation",
       "badge": "Hot",
       "icon": ""
-    },
-    {
-      "text": "Automate Sales Call",
-      "link": "/automate-sales-call",
-      "img": "/images/icons/service-icon-04.svg",
-      "badge": ""
     },
     {
       "link": "/code-generator",
       "isDisable": false,
       "type": "default",
       "img": "/images/generator-icon/code-editor.png",
-      "text": "Code Generator",
+      "text": "SMM Automation",
       "badge": "",
       "icon": ""
     },
+    
+    {
+      "text": "Sales Automation",
+      "link": "/automate-sales-call",
+      "img": "/images/icons/service-icon-04.svg",
+      "badge": ""
+    },
+    
     {
       "link": "/image-editor",
       "isDisable": false,
       "type": "default",
       "img": "/images/generator-icon/photo.png",
-      "text": "Image Editor",
+      "text": "Chatbot Automation",
       "badge": "",
       "icon": ""
     },
@@ -229,84 +218,9 @@
       "isDisable": false,
       "type": "default",
       "img": "/images/generator-icon/video-camera.png",
-      "text": "Video Generator",
+      "text": "Customer Sentiment Analysis",
       "badge": "",
       "icon": ""
-    },
-    {
-      "link": "/email-generator",
-      "isDisable": false,
-      "type": "default",
-      "img": "/images/generator-icon/email.png",
-      "text": "Email Generator",
-      "badge": "",
-      "icon": ""
-    },
-    {
-      "link": "#",
-      "isDisable": true,
-      "type": "default",
-      "img": "/images/generator-icon/website-design.png",
-      "text": "Website Generator",
-      "badge": "Coming",
-      "icon": ""
-    },
-
-    {
-      "link": "/profile-details",
-      "isDisable": false,
-      "type": "setting",
-      "text": "Profile Details",
-      "badge": "",
-      "icon": "user"
-    },
-    {
-      "link": "/notification",
-      "isDisable": false,
-      "type": "setting",
-      "text": "Notification",
-      "badge": "",
-      "icon": "shopping-bag"
-    },
-    {
-      "link": "/chat-export",
-      "isDisable": false,
-      "type": "setting",
-      "text": "Chat Export",
-      "badge": "",
-      "icon": "users"
-    },
-    {
-      "link": "/appearance",
-      "isDisable": false,
-      "type": "setting",
-      "text": "Apperance",
-      "badge": "",
-      "icon": "home"
-    },
-    {
-      "link": "/plans-billing",
-      "isDisable": false,
-      "type": "setting",
-      "text": "Plans and Billing",
-      "badge": "",
-      "icon": "briefcase"
-    },
-    {
-      "link": "/sessions",
-      "isDisable": false,
-      "type": "setting",
-      "text": "Sessions",
-      "badge": "",
-      "icon": "users"
-    },
-    {
-      "link": "/application",
-      "isDisable": false,
-      "type": "setting",
-      "text": "Application",
-      "badge": "",
-      "icon": "list"
     }
   ],
   "toolsItem": [

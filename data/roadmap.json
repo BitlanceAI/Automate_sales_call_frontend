@@ -6,84 +6,112 @@
       "isCheck": true,
       "isLoading": false,
       "isBorader": true,
-      "title": "Tacotron and Tacotron",
-      "desc": "It seems like your question is quite broad, and I'm not sure which specific problem or context you're referring to.",
+      "title": "Understand the Business Needs",
+      "desc": "Identify key pain points in your business where automation can deliver impact.",
       "list": [
         {
-          "desc": "Around 2013, the use of deep learning, especially transformer architectures, revolutionized NLP."
+          "desc": "SEO tasks are manual and time-consuming."
         },
         {
-          "desc": "These models often use recurrent neural networks (RNNs), LSTM networks, or transformer architectures."
+          "desc": "Sales and lead generation lacks personalization."
+        },
+        {
+          "desc": "Chat support isn't scalable."
+        },
+        {
+          "desc": "Social media posting is inconsistent."
+        },
+        {
+          "desc": "No insights on customer sentiment."
         }
       ]
     },
     {
-      "heading": "Train the chatbot",
-      "date": "25 APR, 2025",
+      "heading": "Choose Tools to Automate",
+      "date": "26 APR, 2025",
       "isCheck": true,
       "isLoading": false,
       "isBorader": true,
-      "title": "Choose a Platform",
-      "desc": "Clearly define the purpose of your chatbot. Determine if it will provide.",
+      "title": "Select Automation Targets",
+      "desc": "Decide which parts of the workflow to automate using AI-powered solutions.",
+      "list": [
+        { "desc": "SEO Automation" },
+        { "desc": "SMM (Social Media Marketing) Automation" },
+        { "desc": "Sales Automation" },
+        { "desc": "Chatbot Automation" },
+        { "desc": "Customer Sentiment Analysis" }
+      ]
+    },
+    {
+      "heading": "Train the chatbot",
+      "date": "27 APR, 2025",
+      "isCheck": true,
+      "isLoading": false,
+      "isBorader": true,
+      "title": "Build and Train NLU Models",
+      "desc": "Define intents, collect utterances, and train your bot to handle varied user queries.",
       "list": [
         {
-          "desc": "Around 2013, the use of deep learning, especially transformer architectures"
+          "desc": "Use pre-trained transformer models for quick prototyping (like GPT, BERT)."
+        },
+        {
+          "desc": "Implement fallbacks and intent disambiguation."
         }
       ]
     },
     {
-      "heading": "Build the app",
-      "date": "25 APR, 2025",
-      "isCheck": false,
-      "isLoading": true,
-      "isBorader": true,
-      "title": "",
-      "desc": "Research similar apps to understand market trends and identify opportunities."
-    },
-    {
-      "heading": "Launch the app",
-      "date": "25 APR, 2025",
-      "isCheck": false,
-      "isLoading": true,
-      "isBorader": true,
-      "title": "",
-      "desc": "Based on user feedback and insights, plan regular updates to enhance features, fix bugs, and introduce new functionalities."
-    },
-    {
-      "heading": "Update the app",
-      "date": "25 APR, 2025",
-      "isCheck": false,
-      "isLoading": true,
-      "isBorader": true,
-      "title": "",
-      "desc": "Bug Fixes Address critical bugs and issues reported by users"
-    },
-    {
-      "heading": "Train the chatbot",
-      "date": "25 APR, 2025",
+      "heading": "Collect and Label Data",
+      "date": "28 APR, 2025",
       "isCheck": false,
       "isLoading": false,
       "isBorader": true,
-      "title": "",
-      "desc": "If using machine learning, choose or build a suitable natural language processing (NLP) model. Popular choices."
+      "title": "Real Conversations",
+      "desc": "Gather user queries from target platforms and label them appropriately for training or analysis."
     },
     {
-      "heading": "Collect and Label",
-      "date": "25 APR, 2025",
+      "heading": "Build the App",
+      "date": "29 APR, 2025",
+      "isCheck": false,
+      "isLoading": true,
+      "isBorader": true,
+      "title": "Integrate Frontend & Backend",
+      "desc": "Set up the full-stack system to host and run the automation tools, with UI support for each."
+    },
+    {
+      "heading": "Launch MVP",
+      "date": "30 APR, 2025",
+      "isCheck": false,
+      "isLoading": true,
+      "isBorader": true,
+      "title": "Release & Test",
+      "desc": "Ship the beta version with 5 tools and test across different users, use-cases, and business domains."
+    },
+    {
+      "heading": "Analyze Feedback & Sentiment",
+      "date": "01 MAY, 2025",
       "isCheck": false,
       "isLoading": false,
       "isBorader": true,
-      "title": "",
-      "desc": "User Inputs Gather a diverse set of user inputs that your chatbot is likely to encounter."
+      "title": "Real User Data",
+      "desc": "Use sentiment analysis tools to evaluate customer feedback and pain points in interaction flows."
     },
     {
-      "heading": "Add more features",
-      "date": "25 APR, 2025",
+      "heading": "Update the App",
+      "date": "02 MAY, 2025",
+      "isCheck": false,
+      "isLoading": false,
+      "isBorader": true,
+      "title": "Bug Fixes & Performance",
+      "desc": "Polish the experience: fix bugs, improve latency, enhance prompt engineering logic."
+    },
+    {
+      "heading": "Add More Features",
+      "date": "03 MAY, 2025",
       "isCheck": false,
       "isLoading": false,
       "isBorader": false,
-      "title": "",
-      "desc": "Enable the chatbot to handle and respond to multimedia inputs, such as images, videos, or audio clips."
+      "title": "Scale Up",
+      "desc": "Introduce deeper analytics, multilingual support, voice-based input, and WhatsApp integration."
     }
   ]
 }

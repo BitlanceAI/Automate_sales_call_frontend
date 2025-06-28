@@ -11,7 +11,7 @@ const HeaderTop = () => {
       <div
         className={`header-top-news bg-image1 ${toggleTop ? "" : "deactive"}`}
       >
-        <div className="wrapper">
+        {/* <div className="wrapper">
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -34,7 +34,7 @@ const HeaderTop = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="icon-close">
           <button
             className="close-button bgsection-activation"
