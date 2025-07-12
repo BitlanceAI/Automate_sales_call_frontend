@@ -1,6 +1,17 @@
 import React from "react";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db, auth } from "@/app/lib/firebaseClient";
 
 const SingleRightPanel = ({ title, timestamp }) => {
+  const handleDelete = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const docId = `${user.uid}_${title}`; // Must match the one used during `setDoc`
+    await deleteDoc(doc(db, "history", docId));
+    window.location.reload(); // Simple refresh (or you can lift state for better UX)
+  };
+
   return (
     <li className="history-box active">
       <div className="inner d-flex justify-content-between align-items-center">
@@ -19,9 +30,9 @@ const SingleRightPanel = ({ title, timestamp }) => {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#">
+              <button className="dropdown-item" onClick={handleDelete}>
                 <i className="fa-solid fa-trash-can"></i> Delete
-              </a>
+              </button>
             </li>
           </ul>
         </div>

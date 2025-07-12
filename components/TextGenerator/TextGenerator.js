@@ -2,11 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-
 import sal from "sal.js";
 
 import DocImg from "../../public/images/icons/document-file.png";
-
 import TextGeneratorData from "../../data/dashboard.json";
 import Reaction from "../Common/Reaction";
 import TopBar from "../Common/TopBar";
@@ -39,10 +37,18 @@ const TextGenerator = () => {
     <>
       <TopBar
         barImg={DocImg}
-        title="Website roadmap title write me"
-        wdt={14}
+        title="SEO Blog Automation"
+        wdt={18}
         htd={18}
       />
+
+      <div className="text-center mb--40">
+        <p className="b1">
+          Generate optimized SEO content tailored for your business. <br />
+          Customize titles, meta descriptions, keywords, tone, and more.
+        </p>
+      </div>
+
       {TextGeneratorData &&
         TextGeneratorData.textGenerator.map((data, index) => (
           <div className="chat-box-list pb-0" id="chatContainer" key={index}>
@@ -55,11 +61,13 @@ const TextGenerator = () => {
                       width={40}
                       height={40}
                       src={data.author}
-                      alt="Author"
+                      alt="User Avatar"
                     />
                   </div>
+
                   <div className="chat-content">
-                    <h6 className="title">{data.title}</h6>
+                    <h6 className="title">✍️ Blog Request: {data.title}</h6>
+
                     {editableIndex === index ? (
                       <textarea
                         className="editable my-4"
@@ -113,23 +121,35 @@ const TextGenerator = () => {
                         src={innerData.aiImg}
                         width={40}
                         height={40}
-                        alt="AiWave"
+                        alt="Bitlance AI"
                       />
                     </div>
+
                     <div className="chat-content">
-                      <h6 className="title">
-                        {innerData.title}
-                        <span className="rainbow-badge-card">
-                          <i className="fa-sharp fa-regular fa-check"></i>
-                          {innerData?.badge}
-                        </span>
+                      <h6 className="title mb--2">
+                        🧠 SEO Output: {innerData.title}
+                        {innerData.badge && (
+                          <span className="rainbow-badge-card ms-2">
+                            <i className="fa-sharp fa-regular fa-check"></i>
+                            {innerData.badge}
+                          </span>
+                        )}
                       </h6>
-                      {innerData.desc2 ? (
-                        <p className="">{innerData.desc2}</p>
-                      ) : (
-                        ""
+
+                      {innerData.desc2 && (
+                        <p className="text-sm text-muted mb--10">
+                          Meta Description: {innerData.desc2}
+                        </p>
                       )}
+
                       <p className="mb--20">{innerData.desc}</p>
+
+                      {/* Optional: Keyword Block (Mock) */}
+                      <div className="mb--10">
+                        <strong>🔑 Target Keywords:</strong>{" "}
+                        <span className="text-muted">real estate, Pune, buy flat</span>
+                      </div>
+
                       <Reaction />
                     </div>
                   </div>

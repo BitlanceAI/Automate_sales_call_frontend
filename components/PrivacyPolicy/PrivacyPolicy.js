@@ -17,7 +17,7 @@ const PrivacyPolicy = () => {
                   <h4>Information We Collect</h4>
                   <ol className="rbt-terms-content">
                     <li><strong>Personal Information:</strong> Name, email address, phone number, company name, job title (if applicable), billing address and payment details (processed securely through third-party providers).</li>
-                    <li><strong>Technical & Usage Information:</strong> IP address and device information, browser type and operating system, pages visited, time spent, interactions on our website, and anonymized tool usage data.</li>
+                    <li><strong>Technical & Usage Information:</strong> IP address and device information, browser type and operating system, pages visited, time spent, and interactions on our website. Log data from usage of our AI tools, including inputs and outputs (anonymized where possible).</li>
                     <li><strong>Account Data (for registered users):</strong> Login credentials, purchase history, subscription or license status, support queries or feedback.</li>
                   </ol>
 
@@ -34,12 +34,12 @@ const PrivacyPolicy = () => {
                   <h4>Sharing and Disclosure</h4>
                   <ol className="rbt-terms-content">
                     <li>We do not sell or rent your personal information.</li>
-                    <li>We may share data with:
+                    <li>We may share your data with:
                       <ul>
-                        <li>Payment processors (e.g., Stripe, Razorpay).</li>
-                        <li>Hosting and infrastructure providers.</li>
-                        <li>Analytics platforms.</li>
-                        <li>Legal authorities when required.</li>
+                        <li>Payment processors (e.g., Stripe, Razorpay) to handle transactions securely.</li>
+                        <li>Hosting and infrastructure providers to run and deliver our AI services.</li>
+                        <li>Analytics platforms to understand product performance and improve features.</li>
+                        <li>Legal authorities when required by law or to protect our rights.</li>
                       </ul>
                     </li>
                     <li>All third parties are bound by confidentiality agreements and data protection obligations.</li>
@@ -49,16 +49,16 @@ const PrivacyPolicy = () => {
                   <ol className="rbt-terms-content">
                     <li>Data is stored on secure servers.</li>
                     <li>Retention lasts as long as your account is active or legally required.</li>
-                    <li>Anonymized usage data may be kept for AI model improvements.</li>
+                    <li>Anonymized tool usage data may be retained for performance optimization and AI model improvement.</li>
                   </ol>
 
                   <h4>Your Rights</h4>
                   <ol className="rbt-terms-content">
                     <li>Access or correct your personal data.</li>
-                    <li>Request deletion of your account and data.</li>
+                    <li>Request deletion of your account and associated data.</li>
                     <li>Object to marketing communications.</li>
                     <li>Export or download your data (where applicable).</li>
-                    <li>Contact us at <a href="mailto:support@yourcompany.com">support@yourcompany.com</a>.</li>
+                    <li>To exercise any of these rights, please contact us at <a href="mailto:support@yourcompany.com">support@yourcompany.com</a>.</li>
                   </ol>
 
                   <h4>Security Measures</h4>
@@ -72,30 +72,30 @@ const PrivacyPolicy = () => {
                     <li>Enable essential site functions.</li>
                     <li>Remember user preferences.</li>
                     <li>Track website analytics.</li>
-                    <li>You can manage cookies through your browser settings.</li>
+                    <li>You can manage cookie preferences via your browser settings.</li>
                   </ol>
 
                   <h4>Third-Party Integrations</h4>
                   <ol className="rbt-terms-content">
-                    <li>Some tools may connect to third-party platforms (e.g., Google, OpenAI, AWS).</li>
-                    <li>Shared data is governed by their respective privacy policies.</li>
+                    <li>Some AI tools may integrate with third-party APIs or platforms (e.g., Google, OpenAI, AWS).</li>
+                    <li>Any data shared with these platforms is subject to their respective privacy policies.</li>
                   </ol>
 
                   <h4>Children’s Privacy</h4>
                   <ol className="rbt-terms-content">
-                    <li>Our services are not intended for individuals under 18.</li>
+                    <li>Our services are not intended for individuals under the age of 18.</li>
                     <li>We do not knowingly collect data from minors.</li>
                   </ol>
 
                   <h4>Changes to This Privacy Policy</h4>
                   <ol className="rbt-terms-content">
-                    <li>We may update this policy periodically.</li>
-                    <li>Updates will be posted with a new "Last Updated" date and communicated to users.</li>
+                    <li>We may revise this policy from time to time.</li>
+                    <li>When we do, we will update the \"Last Updated\" date and notify users of significant changes via email or on our website.</li>
                   </ol>
 
                   <h4>Contact Us</h4>
                   <ol className="rbt-terms-content">
-                    <li>📧 Email: <a href="ceo@bitlancetechhub.com">ceo@bitlancetechhub.com</a></li>
+                    <li>📧 Email: <a href="mailto:ceo@bitlancetechhub.com">ceo@bitlancetechhub.com</a></li>
                     <li>📍 Address: Blue Ridge Town Pune, Phase 1, Hinjawadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Pimpri-Chinchwad, Maharashtra 411057</li>
                     <li>📞 Phone: 7391025059</li>
                   </ol>

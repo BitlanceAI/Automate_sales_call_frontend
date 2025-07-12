@@ -43,9 +43,10 @@ const HeaderDashboard = ({ display }) => {
                   <Image
                     className="logo-light"
                     src={isLightTheme ? logo : logoDark}
-                    width={100}
-                    height={500}
+                    width={200}
+                    height={52}
                     alt="Corporate Logo"
+                    style={{ width: "200px", height: "auto", maxWidth: "100%" }}
                   />
                 </Link>
               </div>

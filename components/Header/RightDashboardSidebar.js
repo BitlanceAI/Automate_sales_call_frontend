@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+} from "firebase/firestore";
 import { db, auth } from "@/app/lib/firebaseClient";
 import { useAppContext } from "@/context/Context";
 import SingleRightPanel from "./HeaderProps/SingleRightPanel";
@@ -17,11 +23,12 @@ const RightDashboardSidebar = () => {
 
       const q = query(
         collection(db, "history"),
-        where("uid", "==", user.uid)
+        where("uid", "==", user.uid),
+        orderBy("timestamp", "desc") // 🔥 Order by latest
       );
 
       const snapshot = await getDocs(q);
-      const data = snapshot.docs.map(doc => doc.data());
+      const data = snapshot.docs.map((doc) => doc.data());
       setUserHistory(data);
     };
 
@@ -61,7 +68,11 @@ const RightDashboardSidebar = () => {
                 <SingleRightPanel
                   key={index}
                   title={data.page || "Unknown Page"}
-                  timestamp={new Date(data.timestamp?.seconds * 1000).toLocaleString()}
+                  timestamp={
+                    data.timestamp?.seconds
+                      ? new Date(data.timestamp.seconds * 1000).toLocaleString()
+                      : "Unknown time"
+                  }
                 />
               ))
             ) : (

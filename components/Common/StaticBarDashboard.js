@@ -8,7 +8,7 @@ const StaticbarDashboard = () => {
         <Form />
 
         <p className="b3 small-text">
-          AiWave can make mistakes. Consider checking important information.
+          Providing Efficient Software Solutions - Bitance
         </p>
       </div>
     </>

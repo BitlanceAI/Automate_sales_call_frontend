@@ -2,8 +2,8 @@ import BackToTop from "../backToTop";
 import HelpFaqPage from "./index";
 
 export const metadata = {
-  title: "Help & FAQs - || AiWave - AI SaaS Website NEXTJS15 UI Kit",
-  description: "AiWave - AI SaaS Website NEXTJS15 UI Kit",
+  title: "Help || Bitlance AI",
+  description: "AI Powered Automation",
 };
 
 const HelpFaqLayout = () => {

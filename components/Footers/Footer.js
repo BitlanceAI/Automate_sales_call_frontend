@@ -16,18 +16,26 @@ const Footer = () => {
             <div className="row justify-content-between">
               <div className="col-lg-4 col-md-6 col-sm-12 col-12">
                 <div className="rainbow-footer-widget">
-                  <div className="logo">
+                  <div className="logo" style={{ textAlign: "left" }}>
                     <Link href="/">
                       <Image
                         className="logo-light"
                         src={logo}
-                        width={135}
-                        height={35}
+                        width={100}
+                        height={100}
                         alt="ChatBot Logo"
+                        style={{
+                          height: "1000px",
+                          width: "200px",
+                          maxWidth: "100%",
+                        }}
                       />
                     </Link>
                   </div>
-                  <p className="b1 desc-text">
+                  <p
+                    className="b1 desc-text"
+                    style={{ textAlign: "left" }}
+                  >
                     High quality software solutions
                   </p>
                   <h6 className="subtitle">Join a Newsletter</h6>

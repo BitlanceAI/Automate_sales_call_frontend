@@ -33,20 +33,24 @@
           "title": "Tools",
           "innerItem": [
             {
-              "link": "/seo-automation",
+              "link": "/text-generator",
               "text": "SEO Automation"
             },
             {
-              "link": "/smm-automation",
+              "link": "/image-generator",
               "text": "SMM Automation"
             },
             {
-              "link": "/sales-automation",
+              "link": "/automate-sales-call",
               "text": "Sales Automation"
             },
             {
-              "link": "/chatbot-automation",
+              "link": "/vedio-generator",
               "text": "Chatbot Automation"
+            },
+            {
+              "link": "/chatbot-automation",
+              "text": "Customer Sentiment Analysis"
             }
           ]
         }

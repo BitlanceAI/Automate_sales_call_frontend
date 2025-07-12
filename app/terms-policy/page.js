@@ -2,8 +2,8 @@ import BackToTop from "../backToTop";
 import TermsPolicyPage from "./index";
 
 export const metadata = {
-  title: "Terms and Policy - || AiWave - AI SaaS Website NEXTJS15 UI Kit",
-  description: "AiWave - AI SaaS Website NEXTJS15 UI Kit",
+  title: "Bitlance AI - Terms and Policies",
+  description: "",
 };
 
 const TermsPolicyLayout = () => {

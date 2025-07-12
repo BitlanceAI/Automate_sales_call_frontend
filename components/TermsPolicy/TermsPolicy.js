@@ -24,51 +24,74 @@ const TermsPolicy = () => {
                     <li>
                       <strong>Eligibility:</strong> By using our Services, you represent that you are at least 18 years old and have the legal capacity to enter into a binding contract. If you are using the Services on behalf of an organization, you represent that you have authority to bind that organization.
                     </li>
+
                     <li>
-                      <strong>Purchases and Payments:</strong> All purchases are subject to applicable fees. Payments are processed securely through third-party providers (e.g., Stripe, Razorpay). All fees are non-refundable unless specified otherwise.
+                      <strong>Purchases and Payments:</strong>
+                      <ul>
+                        <li>All purchases of AI tools or subscriptions are subject to applicable fees as displayed at the time of purchase.</li>
+                        <li>Payments are processed via third-party providers (e.g., Stripe, Razorpay).</li>
+                        <li>You agree to provide accurate billing information and authorize us to charge applicable fees.</li>
+                        <li>All fees are non-refundable unless otherwise stated in a specific refund policy.</li>
+                      </ul>
                     </li>
+
                     <li>
-                      <strong>License and Usage Rights:</strong> You are granted a limited, non-transferable license. You agree not to resell, reverse-engineer, or use the tools unlawfully.
+                      <strong>License and Usage Rights:</strong>
+                      <ul>
+                        <li>You are granted a limited, non-exclusive, non-transferable license to use the AI tools solely for your internal or commercial use.</li>
+                        <li>You agree not to resell, sublicense, or redistribute the tools.</li>
+                        <li>You agree not to reverse-engineer, copy, or modify the tools without our permission.</li>
+                        <li>You agree not to use the tools for unlawful purposes (e.g., fraud, discrimination, deepfake generation, etc.).</li>
+                      </ul>
                     </li>
+
                     <li>
-                      <strong>Account and Access:</strong> You are responsible for your account credentials. We may suspend access if these Terms are violated.
+                      <strong>Account and Access:</strong> You are responsible for maintaining the confidentiality of your credentials and all activities under your account. We reserve the right to suspend or terminate access if you violate these Terms.
                     </li>
+
                     <li>
-                      <strong>Intellectual Property:</strong> All tools, models, and content are owned by Bitlance Tech Hub or licensors. No ownership is transferred to you.
+                      <strong>Intellectual Property:</strong> All content, software, models, and documentation provided through our Services are the intellectual property of Bitlance Tech Hub or our licensors. No ownership rights are transferred to you under these Terms.
                     </li>
+
                     <li>
-                      <strong>Service Availability and Updates:</strong> We may update or modify features and do not guarantee 24/7 availability.
+                      <strong>Service Availability and Updates:</strong> We strive to maintain reliable access to our AI tools but do not guarantee uninterrupted availability. We may perform updates, modify features, or discontinue services with or without prior notice.
                     </li>
+
                     <li>
-                      <strong>Data Usage and Privacy:</strong> Data is handled as per our <Link href="/privacy-policy">Privacy Policy</Link>. Input remains yours; anonymized outputs may be used for model improvements.
+                      <strong>Data Usage and Privacy:</strong> By using our tools, you may provide input data and receive output data. We handle all user data in accordance with our <Link href="/privacy-policy">Privacy Policy</Link>. You retain ownership of your input data; we may use anonymized outputs to improve our models unless you opt out where applicable.
                     </li>
+
                     <li>
-                      <strong>Refunds and Cancellations:</strong> Refunds are subject to our Refund Policy. Subscription access remains active until the end of the billing cycle upon cancellation.
+                      <strong>Refunds and Cancellations:</strong> Refunds are only issued in accordance with our Refund Policy. For subscription-based products, you may cancel any time, but access continues until the end of the billing cycle.
                     </li>
+
                     <li>
-                      <strong>Limitation of Liability:</strong> Bitlance is not liable for indirect or consequential damages. Liability is capped at the amount paid in the last 3 months.
+                      <strong>Limitation of Liability:</strong> To the maximum extent permitted by law:
+                      <ul>
+                        <li>We shall not be liable for any indirect, incidental, consequential, or punitive damages.</li>
+                        <li>Our total liability under these Terms shall not exceed the total amount paid by you in the last 3 months.</li>
+                        <li>Use of the AI tools is at your own risk, especially in sensitive decision-making contexts.</li>
+                      </ul>
                     </li>
+
                     <li>
-                      <strong>Indemnification:</strong> You agree to indemnify and hold Bitlance harmless from misuse of Services or violation of Terms.
+                      <strong>Indemnification:</strong> You agree to indemnify, defend, and hold harmless Bitlance Tech Hub, its affiliates, and employees from any claims or liabilities arising out of your misuse of the Services or violation of these Terms.
                     </li>
+
                     <li>
-                      <strong>Governing Law and Dispute Resolution:</strong> These Terms are governed by the laws of India. Disputes are subject to courts in Pune, Maharashtra.
+                      <strong>Governing Law and Dispute Resolution:</strong> These Terms are governed by the laws of India. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts located in Pune, Maharashtra.
                     </li>
+
                     <li>
-                      <strong>Changes to These Terms:</strong> We may update Terms from time to time. Major changes will be notified via email or posted on our website.
+                      <strong>Changes to These Terms:</strong> We may revise these Terms at any time. Material changes will be notified via email or posted on our site. Continued use of the Services after changes constitutes acceptance.
                     </li>
+
                     <li>
                       <strong>Contact Us:</strong>
                       <ul style={{ marginTop: "10px" }}>
-                        <li>
-                          📧 Email: <a href="mailto:ceo@bitlancetechhub.com">ceo@bitlancetechhub.com</a>
-                        </li>
-                        <li>
-                          📍 Address: Blue Ridge Town Pune, Phase 1, Hinjawadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Pimpri-Chinchwad, Maharashtra 411057
-                        </li>
-                        <li>
-                          📞 Phone: 7391025059
-                        </li>
+                        <li>📧 Email: <a href="mailto:ceo@bitlancetechhub.com">ceo@bitlancetechhub.com</a></li>
+                        <li>📍 Address: Blue Ridge Town Pune, Phase 1, Hinjawadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Pimpri-Chinchwad, Maharashtra 411057</li>
+                        <li>📞 Phone: 7391025059</li>
                       </ul>
                     </li>
                   </ol>

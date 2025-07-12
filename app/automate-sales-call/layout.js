@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Automate Sales Call - AiWave",
-  description: "Automate outbound sales calls with AI agent.",
+  title: "Bitlance AI",
+  description: "AI Powered Automation",
 };
 
 export default function Layout({ children }) {

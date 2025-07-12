@@ -23,7 +23,7 @@
     },
     {
       "link": "#",
-      "text": "Tools",
+      "text":"AI Agent Store",
       "isIcon": true,
       "isMenu": true,
       "dropdown": true,
@@ -122,6 +122,12 @@
           "text": "Privacy Policy",
           "badge": "",
           "isComing": false
+        },
+        {
+          "link": "/utilize",
+          "text": "How to Use",
+          "badge": "",
+          "isComing": false
         }
       ],
       "dashboard": [
@@ -171,10 +177,16 @@
       "text": "Roadmap"
     },
     {
-      "link": "/utilize",
+      "link": "/book-call",
       "isIcon": false,
       "isMenu": false,
-      "text": "How to use"
+      "text": "Book Call"
+    },
+    {
+      "link": "/learn-ai-agents",
+      "isIcon": false,
+      "isMenu": false,
+      "text": "Learn AI Agents"
     }
   ],
   "smallNavItem": [
@@ -617,6 +629,7 @@
             {
               "icon": "file-text",
               "text": "Rename"
+              
             },
             {
               "icon": "share-2",

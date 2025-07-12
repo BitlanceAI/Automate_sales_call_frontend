@@ -101,75 +101,75 @@
     }
   ],
   "textGenerator": [
-    {
-      "author": "/images/team/team-01sm.jpg",
-      "title": "Adam Milner",
-      "desc": "Website Roadmap title write me",
-      "isBorder": true,
-      "content": [
-        {
-          "img": "/images/icons/loader-one.gif",
-          "text": "Generating answers for you…",
-          "aiImg": "/images/team/avater.png",
-          "title": "AiWave",
-          "badge": "Bot",
-          "desc2": "Website Roadmap title write me:",
-          "desc": "Here's a fun fact about the Roman Empire: Ancient Romans used a condiment called garum in many of their dishes. Garum was a fermented fish sauce that served as a popular seasoning in Roman cuisine. It was made by fermenting fish, typically mackerel, with salt for several ermenting fish, typically mackerel, with salt for several weeks or months. The resulting liquid was then strainedweeks or months. The resulting liquid was then strained and used as a flavorful and salty condiment in various recipes."
-        }
-      ]
-    },
-    {
-      "author": "/images/team/team-01sm.jpg",
-      "title": "Adam Milner",
-      "desc": "How do AiWave work?",
-      "isBorder": true,
-      "content": [
-        {
-          "img": "/images/icons/loader-one.gif",
-          "text": "Generating answers for you…",
-          "aiImg": "/images/team/avater.png",
-          "title": "AiWave",
-          "badge": "Bot",
-          "desc2": "AiWave companies to easily resolve many types of customer queries:",
-          "desc": "AiWave boost operational efficiency and bring cost savings to businesses while offering convenience and added services to internal employees and external customers. They allow companies to easily resolve many types of customer queries and issues while reducing the need for human interaction."
-        }
-      ]
-    },
-    {
-      "author": "/images/team/team-01sm.jpg",
-      "title": "Adam Milner",
-      "desc": "How can i talk with AiWave?",
-      "isBorder": true,
-      "content": [
-        {
-          "img": "/images/icons/loader-one.gif",
-          "text": "Generating answers for you…",
-          "aiImg": "/images/team/avater.png",
-          "title": "AiWave",
-          "badge": "Bot",
-          "desc": "Adam Milner're already talking to a AiWave right now! Adam Milner can ask me anything or discuss various topics. Just type your questions or statements, and I'll do my best to provide helpful and informative responses.",
-          "desc2": "Certainly! Here's the result of your question:"
-        }
-      ]
-    },
-    {
-      "author": "/images/team/team-01sm.jpg",
-      "title": "Adam Milner",
-      "desc": "Could I know Everything from AiWave?",
-      "isBorder": false,
-      "content": [
-        {
-          "img": "/images/icons/loader-one.gif",
-          "text": "Generating answers for you…",
-          "aiImg": "/images/team/avater.png",
-          "title": "AiWave",
-          "badge": "Bot",
-          "desc2": "Certainly! Here's the result of your question:",
-          "desc": "While AiWaveis a powerful language model that has been trained on a diverse range of internet text, it doesn't know everything. It has limitations"
-        }
-      ]
-    }
-  ],
+  {
+    "author": "/images/team/team-01sm.jpg",
+    "title": "John SEO",
+    "desc": "Generate a blog post for 'Best Real Estate Investments in Pune 2025'",
+    "isBorder": true,
+    "content": [
+      {
+        "img": "/images/icons/loader-one.gif",
+        "text": "Generating blog...",
+        "aiImg": "/images/team/avater.png",
+        "title": "Bitlance AI",
+        "badge": "SEO",
+        "desc2": "Meta Description: Discover top real estate projects in Pune offering great ROI in 2025.",
+        "desc": "Pune has emerged as a top investment hub in India. With smart infrastructure, booming IT parks, and affordable residential projects, investors are eyeing Hinjawadi, Wakad, and Baner as key areas. This blog explores the best properties for long-term returns."
+      }
+    ]
+  },
+  {
+    "author": "/images/team/team-01sm.jpg",
+    "title": "Sana Content",
+    "desc": "SEO article for 'Top 10 AI Tools for Small Businesses'",
+    "isBorder": true,
+    "content": [
+      {
+        "img": "/images/icons/loader-one.gif",
+        "text": "Generating blog...",
+        "aiImg": "/images/team/avater.png",
+        "title": "Bitlance AI",
+        "badge": "SEO",
+        "desc2": "Meta Description: Explore the top 10 AI tools transforming small business operations.",
+        "desc": "From CRM automation to content generation, AI tools are helping startups scale. This article covers tools like Bitlance AI, Jasper, Grammarly, and Notion AI, outlining their features and how they boost productivity for small teams."
+      }
+    ]
+  },
+  {
+    "author": "/images/team/team-01sm.jpg",
+    "title": "Marketing Manager",
+    "desc": "Write blog: How AI is changing e-commerce in India",
+    "isBorder": true,
+    "content": [
+      {
+        "img": "/images/icons/loader-one.gif",
+        "text": "Generating blog...",
+        "aiImg": "/images/team/avater.png",
+        "title": "Bitlance AI",
+        "badge": "SEO",
+        "desc2": "Meta Description: Learn how AI is revolutionizing e-commerce personalization and logistics.",
+        "desc": "AI is transforming the e-commerce sector in India — from chatbots assisting customers 24/7 to AI-driven product recommendations. Companies like Flipkart and Meesho are now using ML algorithms for smarter delivery, customer retention, and dynamic pricing."
+      }
+    ]
+  },
+  {
+    "author": "/images/team/team-01sm.jpg",
+    "title": "Client Request",
+    "desc": "Generate SEO content for 'Digital Marketing Trends in 2025'",
+    "isBorder": false,
+    "content": [
+      {
+        "img": "/images/icons/loader-one.gif",
+        "text": "Generating blog...",
+        "aiImg": "/images/team/avater.png",
+        "title": "Bitlance AI",
+        "badge": "SEO",
+        "desc2": "Meta Description: Stay ahead with the latest digital marketing trends shaping 2025.",
+        "desc": "Voice search, AI-generated content, and hyper-personalized ad campaigns are dominating digital marketing in 2025. Brands are now shifting budgets to AI-powered customer journeys and influencer partnerships that deliver measurable ROI."
+      }
+    ]
+  }
+],
   "imageGenerator": [
     {
       "isHead": true,

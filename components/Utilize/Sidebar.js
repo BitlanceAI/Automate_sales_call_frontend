@@ -46,12 +46,12 @@ const Sidebar = ({ sidebar }) => {
                 </li>
                 <li>
                   <a href="#">
-                    <span>Enhanced Features</span>
+                    <span></span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>Help and support</span>
+                    <span></span>
                   </a>
                 </li>
               </ul>

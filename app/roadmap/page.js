@@ -2,10 +2,9 @@ import BackToTop from "../backToTop";
 import RoadmapPage from "./index";
 
 export const metadata = {
-  title: "Roadmap - || AiWave - AI SaaS Website NEXTJS15 UI Kit",
-  description: "AiWave - AI SaaS Website NEXTJS15 UI Kit",
+  title: "Bitlance AI",
+  description: "AI Powered Automation",
 };
-
 const RoadmapLayout = () => {
   return (
     <>

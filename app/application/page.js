@@ -2,8 +2,8 @@ import BackToTop from "../backToTop";
 import ApplicationsPage from "./index";
 
 export const metadata = {
-  title: "Applications - || AiWave - AI SaaS Website NEXTJS15 UI Kit",
-  description: "AiWave - AI SaaS Website NEXTJS15 UI Kit",
+  title: "Bitlance AI",
+  description: "AI Powered Automation",
 };
 
 const ApplicationsLayout = () => {
