@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { Eye, EyeOff, Building2, Mail, Phone, Globe, Users, FileText, MapPin, Lock } from 'lucide-react';
 
