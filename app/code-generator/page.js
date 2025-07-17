@@ -1,3 +1,6 @@
+"use client";
+import { useEffect } from "react";
+
 import BackToTop from "../backToTop";
 import CodeGeneratorPage from "./index";
 
