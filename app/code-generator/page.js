@@ -1,14 +1,16 @@
-use "client";
-import { useEffect } from "react";
+"use client";
 
+import { useEffect } from "react";
+import { addDoc, collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { auth, db } from "@/app/lib/firebaseClient";
+import { useAppContext } from "@/context/Context";
 import BackToTop from "../backToTop";
 import CodeGeneratorPage from "./index";
 
-export const metadata = {
-  title: "Bitlance AI",
-  description: "AI Powered Automation",
-};
-useEffect(() => {
+const CodeGeneratorLayout = () => {
+  const { isLoggedIn } = useAppContext();
+
+  useEffect(() => {
     const logVisit = async () => {
       const user = auth.currentUser;
       if (!user) return;
@@ -33,7 +35,7 @@ useEffect(() => {
       logVisit();
     }
   }, [isLoggedIn]);
-const CodeGeneratorLayout = () => {
+
   return (
     <>
       <CodeGeneratorPage />
