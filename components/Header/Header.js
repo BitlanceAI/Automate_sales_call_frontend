@@ -30,8 +30,7 @@ const Header = ({ headerTransparent, headerSticky }) => {
   const avatarRef = useRef();
 
   useEffect(() => {
-    if (pathname === "/") router.push("/home");
-
+    // Removed homepage redirect to allow navigation to login/signup
     const unsubscribe = auth.onAuthStateChanged((u) => {
       setUser(u);
     });
@@ -55,7 +54,7 @@ const Header = ({ headerTransparent, headerSticky }) => {
 
   const handleLogout = async () => {
     await auth.signOut();
-    router.push("/sigin");
+    router.push("/signin");
   };
 
   return (
@@ -128,7 +127,7 @@ const Header = ({ headerTransparent, headerSticky }) => {
                     )}
                   </div>
                 ) : (
-                  <Link href="/sigin" className="btn-default">
+                  <Link href="/signin" className="btn-default">
                     Login
                   </Link>
                 )}
