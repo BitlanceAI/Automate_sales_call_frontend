@@ -23,6 +23,7 @@ const SignIn = () => {
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -35,6 +36,7 @@ const SignIn = () => {
   };
 
   const handleGoogleSignIn = async () => {
+    setGoogleLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
       localStorage.setItem("isLoggedIn", "true");
@@ -43,6 +45,7 @@ const SignIn = () => {
       console.error(err);
       setError("Google sign-in failed. Please try again.");
     }
+    setGoogleLoading(false);
   };
 
   const handleSubmit = async (e) => {
@@ -91,11 +94,12 @@ const SignIn = () => {
                           className="btn-default btn-border"
                           onClick={handleGoogleSignIn}
                           aria-label="Login with Google"
+                          disabled={googleLoading}
                         >
                           <span className="icon-left">
                             <Image src={google} width={18} height={18} alt="Google icon" />
                           </span>
-                          Login with Google
+                          {googleLoading ? "Signing in..." : "Login with Google"}
                         </button>
                         <button
                           className="btn-default btn-border"
