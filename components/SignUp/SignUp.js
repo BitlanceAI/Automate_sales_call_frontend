@@ -23,18 +23,21 @@ const SignUp = () => {
 
   const [form, setForm] = useState({ email: "", password: "", industry: "" });
   const [error, setError] = useState("");
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleGoogleSignUp = async () => {
+    setGoogleLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
       router.push("/tools");
     } catch (err) {
       setError("Google sign-up failed. Please try again.");
     }
+    setGoogleLoading(false);
   };
 
   const handleSubmit = async (e) => {
@@ -86,11 +89,12 @@ const SignUp = () => {
                           className="btn-default btn-border"
                           onClick={handleGoogleSignUp}
                           aria-label="Sign up with Google"
+                          disabled={googleLoading}
                         >
                           <span className="icon-left">
                             <Image src={google} width={18} height={18} alt="Google Icon" />
                           </span>
-                          Sign up with Google
+                          {googleLoading ? "Signing up..." : "Sign up with Google"}
                         </button>
                         <button
                           className="btn-default btn-border"
