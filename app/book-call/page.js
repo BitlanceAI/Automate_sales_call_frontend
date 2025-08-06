@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import B2BRegisterForm from "@/B2BRegisterForm";
+import B2BRegisterForm from "../../B2BRegisterForm";
 
 const BookCallPage = () => {
   return (
