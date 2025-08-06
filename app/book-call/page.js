@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import B2BRegisterForm from "../../B2BRegisterForm";
+import B2BRegisterForm from "@/B2BRegisterForm"; // adjust path if needed
 
 const BookCallPage = () => {
   return (
     <main className="bg-white text-black min-h-screen isolate [color-scheme:light]">
       <div className="max-w-screen-xl mx-auto p-6">
-        <B2BRegisterForm/>
+        <B2BRegisterForm />
       </div>
     </main>
   );
