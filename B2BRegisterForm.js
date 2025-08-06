@@ -1,119 +1,216 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Building2, Mail, Phone, Globe, Users, FileText, MapPin, Lock } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 
-const B2BRegisterForm = () => {
+const BusinessForm = () => {
   const [formData, setFormData] = useState({
-    companyName: '',
-    businessEmail: '',
-    phoneNumber: '',
-    companyWebsite: '',
+    name: '',
+    email: '',
+    password: '',
+    phone: '',
+    company: '',
     industry: '',
     businessType: '',
-    numberOfEmployees: '',
-    gstNumber: '',
-    companyAddress: '',
-    password: '',
-    confirmPassword: '',
-    acceptTerms: false,
+    employeeCount: '',
   });
 
-  const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
-  const industries = [
-    { value: '', label: 'Select Industry' },
-    { value: 'IT', label: 'Information Technology' },
-    { value: 'Retail', label: 'Retail & E-commerce' },
-    { value: 'Manufacturing', label: 'Manufacturing' },
-    { value: 'Finance', label: 'Finance & Banking' },
-    { value: 'Other', label: 'Other' },
-  ];
+  const industries = ['Technology', 'Healthcare', 'Finance', 'Education', 'Retail'];
+  const businessTypes = ['B2B', 'B2C', 'Non-Profit', 'Government'];
+  const employeeCounts = ['1-10', '11-50', '51-200', '201-500', '500+'];
 
-  const businessTypes = [
-    { value: '', label: 'Select Business Type' },
-    { value: 'Private Limited', label: 'Private Limited Company' },
-    { value: 'LLP', label: 'Limited Liability Partnership' },
-    { value: 'Partnership', label: 'Partnership Firm' },
-    { value: 'Proprietorship', label: 'Sole Proprietorship' },
-  ];
-
-  const employeeRanges = [
-    { value: '', label: 'Select Employee Count' },
-    { value: '1-10', label: '1-10 employees' },
-    { value: '11-50', label: '11-50 employees' },
-    { value: '51-200', label: '51-200 employees' },
-    { value: '201-1000', label: '201-1000 employees' },
-    { value: '1000+', label: '1000+ employees' },
-  ];
-
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validatePhone = (phone) => /^[+]?[\d\s\-\(\)]{10,}$/.test(phone);
-  const validateGST = (gst) => /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(gst);
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.companyName.trim()) newErrors.companyName = 'Company name is required';
-    if (!formData.businessEmail.trim()) newErrors.businessEmail = 'Business email is required';
-    else if (!validateEmail(formData.businessEmail)) newErrors.businessEmail = 'Please enter a valid email address';
-    if (!formData.phoneNumber.trim()) newErrors.phoneNumber = 'Phone number is required';
-    else if (!validatePhone(formData.phoneNumber)) newErrors.phoneNumber = 'Please enter a valid phone number';
-    if (!formData.industry) newErrors.industry = 'Please select an industry';
-    if (!formData.businessType) newErrors.businessType = 'Please select a business type';
-    if (!formData.numberOfEmployees) newErrors.numberOfEmployees = 'Please select number of employees';
-    if (!formData.gstNumber.trim()) newErrors.gstNumber = 'GST number is required';
-    else if (!validateGST(formData.gstNumber)) newErrors.gstNumber = 'Please enter a valid GST number';
-    if (!formData.companyAddress.trim()) newErrors.companyAddress = 'Company address is required';
-    if (!formData.password) newErrors.password = 'Password is required';
-    else if (formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters long';
-    if (!formData.confirmPassword) newErrors.confirmPassword = 'Please confirm your password';
-    else if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
-    if (!formData.acceptTerms) newErrors.acceptTerms = 'You must accept the terms and conditions';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+  const validate = () => {
+    const errors = {};
+    if (!formData.name.trim()) errors.name = 'Name is required';
+    if (!formData.email.includes('@')) errors.email = 'Valid email required';
+    if (formData.password.length < 6) errors.password = 'Password must be at least 6 characters';
+    if (!formData.phone.match(/^\d{10}$/)) errors.phone = 'Phone must be 10 digits';
+    if (!formData.company.trim()) errors.company = 'Company name is required';
+    if (!formData.industry) errors.industry = 'Select an industry';
+    if (!formData.businessType) errors.businessType = 'Select a business type';
+    if (!formData.employeeCount) errors.employeeCount = 'Select employee range';
+    return errors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
-    setIsSubmitting(true);
-    setTimeout(() => {
-      alert('Registration successful! Welcome to our B2B platform.');
-      setIsSubmitting(false);
-      setFormData({
-        companyName: '',
-        businessEmail: '',
-        phoneNumber: '',
-        companyWebsite: '',
-        industry: '',
-        businessType: '',
-        numberOfEmployees: '',
-        gstNumber: '',
-        companyAddress: '',
-        password: '',
-        confirmPassword: '',
-        acceptTerms: false,
-      });
-    }, 2000);
+    const errors = validate();
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      // Simulate async submission
+      setTimeout(() => {
+        console.log('Form Submitted:', formData);
+        setSubmitted(true);
+      }, 500);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      {/* Replace this with your full JSX form structure as already written */}
-      {/* Your JSX from earlier fits directly here */}
-      {/* Including all fields, labels, icons, and the submit button */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-cyan-100 py-8 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg space-y-6"
+      >
+        <h2 className="text-2xl font-bold text-center text-purple-700">Business Registration Form</h2>
+
+        {submitted && (
+          <div className="bg-green-100 text-green-700 p-3 rounded text-center">
+            🎉 Registration Successful!
+          </div>
+        )}
+
+        {/* Name */}
+        <div>
+          <label className="block font-semibold">Name</label>
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full border p-2 rounded mt-1"
+            placeholder="Enter your name"
+          />
+          {formErrors.name && <p className="text-red-500 text-sm">{formErrors.name}</p>}
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="block font-semibold">Email</label>
+          <input
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full border p-2 rounded mt-1"
+            placeholder="example@domain.com"
+          />
+          {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
+        </div>
+
+        {/* Password */}
+        <div>
+          <label className="block font-semibold">Password</label>
+          <div className="relative">
+            <input
+              name="password"
+              type={showPassword ? 'text' : 'password'}
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full border p-2 rounded mt-1 pr-10"
+              placeholder="Enter password"
+            />
+            <button
+              type="button"
+              className="absolute right-2 top-3 text-gray-600"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+          {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}</p>}
+        </div>
+
+        {/* Phone */}
+        <div>
+          <label className="block font-semibold">Phone</label>
+          <input
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full border p-2 rounded mt-1"
+            placeholder="10-digit number"
+          />
+          {formErrors.phone && <p className="text-red-500 text-sm">{formErrors.phone}</p>}
+        </div>
+
+        {/* Company */}
+        <div>
+          <label className="block font-semibold">Company</label>
+          <input
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            className="w-full border p-2 rounded mt-1"
+            placeholder="Your company name"
+          />
+          {formErrors.company && <p className="text-red-500 text-sm">{formErrors.company}</p>}
+        </div>
+
+        {/* Industry */}
+        <div>
+          <label className="block font-semibold">Industry</label>
+          <select
+            name="industry"
+            value={formData.industry}
+            onChange={handleChange}
+            className="w-full border p-2 rounded mt-1"
+          >
+            <option value="">Select</option>
+            {industries.map((ind) => (
+              <option key={ind} value={ind}>
+                {ind}
+              </option>
+            ))}
+          </select>
+          {formErrors.industry && <p className="text-red-500 text-sm">{formErrors.industry}</p>}
+        </div>
+
+        {/* Business Type */}
+        <div>
+          <label className="block font-semibold">Business Type</label>
+          <select
+            name="businessType"
+            value={formData.businessType}
+            onChange={handleChange}
+            className="w-full border p-2 rounded mt-1"
+          >
+            <option value="">Select</option>
+            {businessTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+          {formErrors.businessType && <p className="text-red-500 text-sm">{formErrors.businessType}</p>}
+        </div>
+
+        {/* Employee Count */}
+        <div>
+          <label className="block font-semibold">Number of Employees</label>
+          <select
+            name="employeeCount"
+            value={formData.employeeCount}
+            onChange={handleChange}
+            className="w-full border p-2 rounded mt-1"
+          >
+            <option value="">Select</option>
+            {employeeCounts.map((count) => (
+              <option key={count} value={count}>
+                {count}
+              </option>
+            ))}
+          </select>
+          {formErrors.employeeCount && (
+            <p className="text-red-500 text-sm">{formErrors.employeeCount}</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-purple-600 text-white p-2 rounded hover:bg-purple-700 transition"
+        >
+          Register
+        </button>
+      </form>
     </div>
   );
 };
 
-export default B2BRegisterForm;
-//this is a teststststsst
+export default BusinessForm;
