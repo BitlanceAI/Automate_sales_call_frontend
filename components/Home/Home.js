@@ -17,9 +17,28 @@ import BrandList from "../Brands/BrandList";
 import BrandTwo from "../Brands/Brand-Two";
 import Testimonial from "../Testimonials/Testimonial";
 import { useAppContext } from "@/context/Context";
-
+import { db1 } from "../../lib/firebase"; // make sure you have this configured
+import { collection, getDocs } from "firebase/firestore";
 const Home = () => {
   const { isLightTheme } = useAppContext();
+  const [members, setMembers] = useState([]);
+
+useEffect(() => {
+  async function fetchMembers() {
+    try {
+      const querySnapshot = await getDocs(collection(db1, "communityMembers"));
+      const membersData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setMembers(membersData);
+    } catch (error) {
+      console.error("Error fetching community members:", error);
+    }
+  }
+  fetchMembers();
+}, []);
+
   const [visibleIndex, setVisibleIndex] = useState(null);
 
   const tools = ["With SEO", "With SMM", "With Sales", "Chatbot"];
@@ -96,9 +115,73 @@ const Home = () => {
                   <p className="description mt--10">
                     Want to learn how others are using Bitlance AI tools?
                   </p>
-                  <Link className="btn-outline mt--10" href="/community">
+                  <h2 className="btn-outline mt--10" href="/community">
                     Join the Bitlance Community
-                  </Link>
+                  </h2>
+                 
+
+                 <div className="row g-5">
+  {members.map((member) => (
+    <div className="col-lg-4 col-md-6 col-12" key={member.id}>
+      <a
+        href={member.linkedinUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <div
+          className="rbt-card team-card variation-02 rbt-hover"
+          style={{
+            backgroundColor: "#000000",
+            padding: "20px",
+            borderRadius: "15px",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+            transition: "box-shadow 0.3s ease",
+            height: "100%"
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.boxShadow = "0 8px 16px rgba(0,0,0,0.2)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)")
+          }
+        >
+          <div className="inner" style={{ textAlign: "center" }}>
+            {/* Fixed-size, responsive image container */}
+            <div
+              className="thumbnail"
+              style={{
+                width: "100%",
+                aspectRatio: "1 / 1",
+                overflow: "hidden",
+                borderRadius: "10px",
+                marginBottom: "15px"
+              }}
+            >
+              <Image
+                src={member.image}
+                alt={member.name}
+                width={300}
+                height={300}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+            <div className="content">
+              <h4 className="title">{member.name}</h4>
+              <p className="designation">{member.bio}</p>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  ))}
+</div>
+
+
                 </div>
 
                 <div className="inner-shape">
