@@ -1,66 +1,73 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Sal from "sal.js";
 
-import RoadmapData from "../../data/roadmap.json";
-import CtaTwo from "../CallToActions/Cta-Two";
-
 const Roadmap = () => {
+  const [roadmapData, setRoadmapData] = useState(null);
+
   useEffect(() => {
     Sal();
+
+    async function fetchRoadmap() {
+      try {
+        const res = await fetch("/api/roadmap"); 
+        if (!res.ok) throw new Error("Failed to fetch roadmap data");
+        const data = await res.json();
+        setRoadmapData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchRoadmap();
   }, []);
+
   return (
     <>
       <div className="roadmap-section rainbow-section-gap-big rainbow-section-gapBottom">
         <div className="container">
-          {RoadmapData &&
-            RoadmapData.roadmap.map((data, index) => (
-              <div className="row changelog_info" id="v120" key={index}>
-                <div className="col-lg-3 changelog_date">
-                  <div className="c_date">
-                    <h6>{data.heading} </h6>
-                    <p>{data.date}</p>
-                  </div>
-                </div>
-                <div className="col-lg-2">
-                  <div className="version_info">
-                    {data.isCheck ? (
-                      <div className="c_version">
-                        <i className="fa-duotone fa-check"></i>
-                      </div>
-                    ) : data.isLoading ? (
-                      <div className="c_version bg-yellow">
-                        <i className="fa-duotone fa-loader"></i>
-                      </div>
-                    ) : (
-                      <div className="c_version bg-dark">
-                        <i className="fa-regular fa-message-lines"></i>
-                      </div>
-                    )}
-
-                    {data.isBorader ? (
-                      <div className="line bottom_half"></div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
-                <div className="col-lg-3">
-                  <div className="changelog_content">
-                    <p className="text">{data.desc}</p>
-                    <p className="title">{data.title}</p>
-                    <ul className="content-list">
-                      {data.list &&
-                        data.list.map((item, i) => (
-                          <li key={i}>{item.desc}</li>
-                        ))}
-                    </ul>
-                  </div>
+          {roadmapData?.roadmap?.map((data, index) => (
+            <div className="row changelog_info" id="v120" key={index}>
+              <div className="col-lg-3 changelog_date">
+                <div className="c_date">
+                  <h6>{data.heading} </h6>
+                  <p>{data.date}</p>
                 </div>
               </div>
-            ))}
+              <div className="col-lg-2">
+                <div className="version_info">
+                  {data.isCheck ? (
+                    <div className="c_version">
+                      <i className="fa-duotone fa-check"></i>
+                    </div>
+                  ) : data.isLoading ? (
+                    <div className="c_version bg-yellow">
+                      <i className="fa-duotone fa-loader"></i>
+                    </div>
+                  ) : (
+                    <div className="c_version bg-dark">
+                      <i className="fa-regular fa-message-lines"></i>
+                    </div>
+                  )}
+
+                  {data.isBorader ? <div className="line bottom_half"></div> : ""}
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="changelog_content">
+                  <p className="text">{data.desc}</p>
+                  <p className="title">{data.title}</p>
+                  <ul className="content-list">
+                    {data.list?.map((item, i) => (
+                      <li key={i}>{item.desc}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -103,12 +110,6 @@ const Roadmap = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="rainbow-cta-area rainbow-section-gap rainbow-section-gapBottom-big">
-        <div className="container">
-          <CtaTwo />
-        </div>
-      </div> */}
     </>
   );
 };
