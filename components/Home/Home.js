@@ -96,7 +96,7 @@ const Home = () => {
                   <p className="description mt--10">
                     Want to learn how others are using Bitlance AI tools?
                   </p>
-                  <Link className="btn-outline mt--10" href="/community">
+                  <Link className="btn-outline mt--10" href="#testimonial">
                     Join the Bitlance Community
                   </Link>
                   
@@ -180,7 +180,7 @@ const Home = () => {
       </div>
 
       {/* ✅ Community Review Section (Testimonial + BrandTwo + Stars) */}
-      <div className="rainbow-testimonial-area rainbow-section-gap">
+      <div id="testimonial" className="rainbow-testimonial-area rainbow-section-gap">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
