@@ -1,118 +1,163 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Context from "@/context/Context";
-
-import HeaderTop from "@/components/Header/HeaderTop/HeaderTop";
-import Header from "@/components/Header/Header";
-import PopupMobileMenu from "@/components/Header/PopUpMobileMenu";
-import Breadcrumb from "@/components/Common/Breadcrumb";
-import Footer from "@/components/Footers/Footer";
-import Copyright from "@/components/Footers/Copyright";
 import Image from "next/image";
+import Link from "next/link";
+import Slider from "react-slick";
+import "venobox/dist/venobox.min.css";
 
-// Firestore imports
-import { db1 } from "../../lib/firebase"; // make sure you have this configured
+import darkBg from "../../public/images/light/service/bg-testimonial.png";
+import darkBgHover from "../../public/images/light/service/bg-testimonial-hover.png";
+import { useAppContext } from "@/context/Context";
+
+// Firestore
+import { db1 } from "../../lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
-const CommunityPage = () => {
+const Testimonial = () => {
+  const { isLightTheme } = useAppContext();
   const [members, setMembers] = useState([]);
 
-  useEffect(() => {
-    async function fetchMembers() {
-      try {
-        const querySnapshot = await getDocs(collection(db1, "communityMembers"));
-        const membersData = querySnapshot.docs.map((doc) => ({
-          id: doc.id, // 
-          ...doc.data(),
-        }));
-        setMembers(membersData);
-      } catch (error) {
-        console.error("Error fetching community members:", error);
-      }
+  // Slider settings
+  const settings = {
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    dots: true,
+    arrows: true,
+    cssEase: "linear",
+    responsive: [
+      { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+      { breakpoint: 992, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+      { breakpoint: 769, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+      { breakpoint: 581, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+    ],
+  };
+
+// Fetch members from Firebase
+useEffect(() => {
+  async function fetchMembers() {
+    try {
+      const querySnapshot = await getDocs(collection(db1, "communityMembers"));
+      const membersData = querySnapshot.docs.map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          rating: data.rating ?? 5, // ✅ default to 5 stars
+          ...data,
+        };
+      });
+      setMembers(membersData);
+    } catch (error) {
+      console.error("Error fetching community members:", error);
     }
-    fetchMembers();
-  }, []);
+  }
+  fetchMembers();
+
+  // Venobox video lightbox
+  import("venobox/dist/venobox.min.js").then((venobox) => {
+    new venobox.default({
+      selector: ".popup-video",
+      maxWidth: window.innerWidth >= 992 ? "70%" : "100%",
+    });
+  });
+}, []);
+
 
   return (
-    <main className="page-wrapper">
-      <Context>
-        {/* HEADER */}
-        <HeaderTop />
-        <Header
-          headerTransparent="header-transparent"
-          headerSticky="header-sticky"
-          btnClass="rainbow-gradient-btn"
-        />
-        <PopupMobileMenu />
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
+          <Slider
+            {...settings}
+            className="service-wrapper rainbow-service-slider-actvation slick-grid-15 rainbow-slick-dot rainbow-gradient-arrows"
+          >
+            {members.map((member) => (
+              <div className="slide-single-layout" key={member.id}>
+                <div
+                  className="rainbow-box-card card-style-default testimonial-style-defalt has-bg-shaped"
+                  style={{ background: "transparent" }}
+                >
+                  <div className="inner">
+                    {/* Community Member label + dynamic rating */}
+                    <div className="rating">
+                      <span className="community-label">Community Member</span>
+                      {[...Array(member.rating || 0)].map((_, i) => (
+                        <a href="#rating" key={i}>
+                          <i className="fa-sharp fa-solid fa-star"></i>
+                        </a>
+                      ))}
+                    </div>
 
-        {/* BREADCRUMB */}
-        <Breadcrumb title="Community" text="Community" />
+                    <div className="content">
+                      <p className="description">{member.bio}</p>
+                      <div className="bottom-content">
+                        <div className="meta-info-section">
+                          <p className="title-text">{member.name}</p>
+                          <p className="desc">{member.role || "Member"}</p>
+                          {member.brandImg && (
+                            <div className="desc-img">
+                              <Image
+                                src={member.brandImg}
+                                width={86}
+                                height={23}
+                                alt="Brand"
+                              />
+                            </div>
+                          )}
+                        </div>
+                        <div className="meta-img-section">
+                          {member.videoUrl && (
+                            <Link
+                              className="btn-default rounded-player style-two xs-size popup-video"
+                              href={member.videoUrl}
+                              data-vbtype="video"
+                            >
+                              <span>
+                                <i className="fa-duotone fa-play"></i>
+                              </span>
+                            </Link>
+                          )}
+                          {member.image && (
+                            <a className="image" href={member.linkedinUrl || "#"} target="_blank" rel="noopener noreferrer">
+                              <Image
+                                src={member.image}
+                                width={43}
+                                height={43}
+                                alt={member.name}
+                              />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-        {/* COMMUNITY SECTION */}
-        <div className="slider-bg-image bg-banner1 slider-bg-shape">
-          <div className="container">
-            <div className="row mb--40">
-              <div className="col-lg-12 text-center">
-                <h2 className="title">Join the Bitlance Community</h2>
-                <p className="description">
-                  Meet our amazing members from LinkedIn and beyond.
-                </p>
+                  {/* Background shapes */}
+                  <div className="bg-shape">
+                    <Image
+                      className="bg"
+                      src={isLightTheme ? member.bgImg || darkBg : darkBg}
+                      width={415}
+                      height={287}
+                      alt=""
+                    />
+                    <Image
+                      className="bg-hover"
+                      src={isLightTheme ? member.bgImgHover || darkBgHover : darkBgHover}
+                      width={415}
+                      height={287}
+                      alt=""
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div className="row g-5">
-              {members.map((member) => (
-  <div className="col-lg-4 col-md-6 col-12" key={member.id}>
-    <a 
-      href={member.linkedinUrl} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
-  <div
-    className="rbt-card team-card variation-02 rbt-hover"
-    style={{
-      backgroundColor: "#000000",
-      padding: "20px",
-      borderRadius: "15px",
-      boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-      transition: "box-shadow 0.3s ease",
-    }}
-    onMouseEnter={e => e.currentTarget.style.boxShadow = "0 8px 16px rgba(0,0,0,0.2)"}
-    onMouseLeave={e => e.currentTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)"}
-  >
-    <div className="inner">
-      <div className="thumbnail">
-        <Image
-          src={member.image}
-          alt={member.name}
-          width={300}
-          height={300}
-          className="w-100 radius"
-        />
-      </div>
-      <div className="content">
-        <h4 className="title">{member.name}</h4>
-        <p className="designation">{member.bio}</p>
+            ))}
+          </Slider>
+        </div>
       </div>
     </div>
-   
-  </div>
-   </a>
-</div>
-
-))}
-            </div>
-          </div>
-        </div>
-
-        {/* FOOTER */}
-        <Footer />
-        <Copyright />
-      </Context>
-    </main>
   );
 };
 
-export default CommunityPage;
+export default Testimonial;
