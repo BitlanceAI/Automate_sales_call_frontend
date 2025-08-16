@@ -5,8 +5,14 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-import { auth, googleProvider } from "@/app/lib/firebaseClient";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, facebookProvider } from "@/app/lib/firebaseClient";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  fetchSignInMethodsForEmail,
+  linkWithCredential,
+  GoogleAuthProvider,FacebookAuthProvider
+} from "firebase/auth";
 
 import logo from "../../public/images/logo/logo.png";
 import logoDark from "../../public/images/light/logo/logo-dark.png";
@@ -44,6 +50,56 @@ const SignIn = () => {
       setError("Google sign-in failed. Please try again.");
     }
   };
+
+  const handleFacebookSignIn = async () => {
+  try {
+    await signInWithPopup(auth, facebookProvider);
+    localStorage.setItem("isLoggedIn", "true");
+    redirectAfterLogin();
+  } catch (err) {
+    console.error("Facebook sign-in error:", err);
+
+    if (err.code === "auth/account-exists-with-different-credential") {
+      const email = err.customData?.email;
+      const pendingCred = FacebookAuthProvider.credentialFromError(err);
+
+      if (email) {
+        const methods = await fetchSignInMethodsForEmail(auth, email);
+
+        if (methods.includes("google.com")) {
+          setError(
+            "This email is already registered with Google. Please sign in with Google first, then we'll link your Facebook account."
+          );
+
+          try {
+            // Sign in with Google
+            const googleResult = await signInWithPopup(auth, googleProvider);
+
+            // Link the pending Facebook credential
+            await linkWithCredential(googleResult.user, pendingCred);
+
+            localStorage.setItem("isLoggedIn", "true");
+            redirectAfterLogin();
+            return;
+          } catch (linkErr) {
+            console.error("Error linking Facebook to Google:", linkErr);
+            setError(
+              "Failed to link Facebook with Google account. Please try again."
+            );
+          }
+        } else {
+          setError(
+            `This email is already registered using: ${methods.join(
+              ", "
+            )}. Please use that method.`
+          );
+        }
+      }
+    } else {
+      setError("Facebook sign-in failed. Please try again.");
+    }
+  }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,8 +155,7 @@ const SignIn = () => {
                         </button>
                         <button
                           className="btn-default btn-border"
-                          disabled
-                          title="Coming Soon"
+                          onClick={handleFacebookSignIn}
                           aria-label="Login with Facebook"
                         >
                           <span className="icon-left">
