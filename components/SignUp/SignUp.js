@@ -22,7 +22,9 @@ const SignUp = () => {
 
   const [form, setForm] = useState({ name: "", email: "", password: "", phone: "", industry: "" });
   const [error, setError] = useState("");
-
+const redirectAfterLogin = () => {
+    router.push("/tools");
+  };
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
