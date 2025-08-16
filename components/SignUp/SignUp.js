@@ -5,13 +5,12 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-import { auth, googleProvider } from "@/app/lib/firebaseClient";
+import { auth, googleProvider, facebookProvider } from "@/app/lib/firebaseClient";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 import logo from "../../public/images/logo/logo.png";
 import logoDark from "../../public/images/light/logo/logo-dark.png";
 import userImg from "../../public/images/team/team-02sm.jpg";
-import brandImg from "../../public/images/brand/brand-t.png";
 import google from "../../public/images/sign-up/google.png";
 import facebook from "../../public/images/sign-up/facebook.png";
 import DarkSwitch from "../Header/dark-switch";
@@ -21,22 +20,76 @@ const SignUp = () => {
   const router = useRouter();
   const { isLightTheme, toggleTheme } = useAppContext();
 
-  const [form, setForm] = useState({ email: "", password: "", industry: "" });
+  const [form, setForm] = useState({ name: "", email: "", password: "", phone: "", industry: "" });
   const [error, setError] = useState("");
 
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleGoogleSignUp = async () => {
+  // Google sign up
+const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      router.push("/tools");
+      localStorage.setItem("isLoggedIn", "true");
+      redirectAfterLogin();
     } catch (err) {
-      setError("Google sign-up failed. Please try again.");
+      console.error(err);
+      setError("Google sign-in failed. Please try again.");
     }
   };
 
+  const handleFacebookSignIn = async () => {
+  try {
+    await signInWithPopup(auth, facebookProvider);
+    localStorage.setItem("isLoggedIn", "true");
+    redirectAfterLogin();
+  } catch (err) {
+    console.error("Facebook sign-in error:", err);
+
+    if (err.code === "auth/account-exists-with-different-credential") {
+      const email = err.customData?.email;
+      const pendingCred = FacebookAuthProvider.credentialFromError(err);
+
+      if (email) {
+        const methods = await fetchSignInMethodsForEmail(auth, email);
+
+        if (methods.includes("google.com")) {
+          setError(
+            "This email is already registered with Google. Please sign in with Google first, then we'll link your Facebook account."
+          );
+
+          try {
+            // Sign in with Google
+            const googleResult = await signInWithPopup(auth, googleProvider);
+
+            // Link the pending Facebook credential
+            await linkWithCredential(googleResult.user, pendingCred);
+
+            localStorage.setItem("isLoggedIn", "true");
+            redirectAfterLogin();
+            return;
+          } catch (linkErr) {
+            console.error("Error linking Facebook to Google:", linkErr);
+            setError(
+              "Failed to link Facebook with Google account. Please try again."
+            );
+          }
+        } else {
+          setError(
+            `This email is already registered using: ${methods.join(
+              ", "
+            )}. Please use that method.`
+          );
+        }
+      }
+    } else {
+      setError("Facebook sign-in failed. Please try again.");
+    }
+  }
+};
+
+  // Email/Password sign up
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -48,6 +101,18 @@ const SignUp = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, form.email, form.password);
+      await fetch("https://biltance.app.n8n.cloud/webhook/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          industry: form.industry,
+        }),
+      });
       router.push("/tools");
     } catch (err) {
       setError("Sign-up failed. Email may already be in use.");
@@ -84,7 +149,7 @@ const SignUp = () => {
                       <div className="social-btn-grp">
                         <button
                           className="btn-default btn-border"
-                          onClick={handleGoogleSignUp}
+                          onClick={handleGoogleSignIn}
                           aria-label="Sign up with Google"
                         >
                           <span className="icon-left">
@@ -94,8 +159,7 @@ const SignUp = () => {
                         </button>
                         <button
                           className="btn-default btn-border"
-                          disabled
-                          title="Coming soon"
+                          onClick={handleFacebookSignIn}
                           aria-label="Sign up with Facebook"
                         >
                           <span className="icon-left">
@@ -125,6 +189,37 @@ const SignUp = () => {
                             onChange={handleInput}
                             required
                             autoComplete="email"
+                          />
+                        </div>
+                        {/* Name */}
+                        <div className="input-section">
+                          <div className="icon">
+                            <i className="fa-sharp fa-regular fa-user" aria-hidden="true"></i>
+                          </div>
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="Full Name"
+                            value={form.name}
+                            onChange={handleInput}
+                            required
+                            autoComplete="name"
+                          />
+                        </div>
+
+                        {/* Phone */}
+                        <div className="input-section">
+                          <div className="icon">
+                            <i className="fa-sharp fa-solid fa-phone" aria-hidden="true"></i>
+                          </div>
+                          <input
+                            type="tel"
+                            name="phone"
+                            placeholder="Phone Number"
+                            value={form.phone}
+                            onChange={handleInput}
+                            required
+                            autoComplete="tel"
                           />
                         </div>
 
@@ -216,9 +311,7 @@ const SignUp = () => {
                           Bitlance tools helped streamline our workflow and improved cross-team collaboration.
                         </p>
                         <div className="bottom-content">
-                          <div className="meta-info-section">
-                            
-                          </div>
+                          <div className="meta-info-section"></div>
                         </div>
                       </div>
                     </div>
