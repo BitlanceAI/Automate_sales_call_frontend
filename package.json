@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "^14.2.3",
+    "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.3",
     "clipboard": "^2.0.11",
     "firebase": "^11.9.1",
@@ -19,6 +20,7 @@
     "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.6.0",
     "react-phone-number-input": "^3.4.12",
     "react-scroll": "^1.9.3",
     "react-select": "^5.10.1",
