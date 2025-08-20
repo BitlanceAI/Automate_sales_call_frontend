@@ -6,7 +6,7 @@ import { Sora } from "next/font/google";
 import Script from "next/script"; // ✅ Import Script
 import Loading from "./loading";
 import Context from "@/context/Context";
-
+import { Toaster } from "react-hot-toast";
 // Import Bootstrap JS
 import "bootstrap/scss/bootstrap.scss";
 
@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-JFNVQ2FCTY');
           `}
         </Script>
-
+<Toaster position="top-center" reverseOrder={false} />
         <Context>
           {loading ? <Loading /> : children}
           <BackToTop />

@@ -1,163 +1,219 @@
-import React, { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+"use client";
 
-const RegisterForm = () => {
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
+import { db1 } from "./lib/firebase";
+import { collection, addDoc, serverTimestamp ,query, where,getDocs} from "firebase/firestore";
+import bcrypt from "bcryptjs";
+import Image from "next/image";
+
+export default function RegisterForm() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     phone: "",
-    age: "",
     password: "",
     confirmPassword: "",
-    // gender: "", // optional
   });
 
   const [formErrors, setFormErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     const errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]{10}$/;
 
-    if (!formData.username.trim()) {
-      errors.username = "Username is required";
-    }
-
-    if (!formData.email || !emailRegex.test(formData.email)) {
+    if (!formData.username.trim()) errors.username = "Username is required";
+    if (!formData.email || !emailRegex.test(formData.email))
       errors.email = "Valid email is required";
-    }
-
-    if (!formData.phone || !phoneRegex.test(formData.phone)) {
+    if (!formData.phone || !phoneRegex.test(formData.phone))
       errors.phone = "Valid 10-digit phone number is required";
-    }
-
-    const age = parseInt(formData.age, 10);
-    if (!formData.age || isNaN(age) || age < 18) {
-      errors.age = "You must be at least 18 years old";
-    }
-
-    if (!formData.password || formData.password.length < 6) {
+    if (!formData.password || formData.password.length < 6)
       errors.password = "Password must be at least 6 characters long";
-    }
-
-    if (formData.confirmPassword !== formData.password) {
+    if (formData.confirmPassword !== formData.password)
       errors.confirmPassword = "Passwords do not match";
-    }
-
-    // if (!formData.gender) {
-    //   errors.gender = "Please select a gender";
-    // }
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  if (!validateForm()) return;
 
-    if (!validateForm()) return;
+  setLoading(true);
+  try {
+    // Check for duplicates in Firestore
+    const usersRef = collection(db1, "learnaiusers");
+    
+    // Query for existing email or phone
+    const emailQuery = query(usersRef, where("email", "==", formData.email));
+    const [emailSnapshot] = await Promise.all([
+      getDocs(emailQuery)
+    ]);
 
+    if (!emailSnapshot.empty) {
+      toast.error("Email is already registered!");
+      setLoading(false);
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash(formData.password, 10);
+
+    await addDoc(usersRef, {
+      ...formData,
+      password: hashedPassword,
+      createdAt: serverTimestamp(),
+    });
+
+    // n8n webhook integration
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      await fetch("https://biltance.app.n8n.cloud/webhook/registerlearnai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          phone: formData.phone,
+        }),
       });
-
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        const errorData = await response.json();
-        alert(errorData.message || "Registration failed");
-      }
     } catch (err) {
-      alert("Server error. Please try again later.");
+      console.log("n8n webhook failed, skipping...", err.message);
     }
-  };
+  try {
+        const formattedPhone = formData.phone.startsWith("+91")
+          ? formData.phone
+          : `+91${formData.phone}`;
 
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-cyan-100 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-lg shadow-xl text-center">
-          <h2 className="text-2xl font-bold text-green-600">Registration Successful!</h2>
-          <p className="mt-2 text-gray-700">Welcome aboard, {formData.username}!</p>
-        </div>
-      </div>
-    );
+        await fetch(
+          "https://automate-sales-call-deploy-production.up.railway.app/outbound-call",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phoneNumber: formattedPhone }),
+          }
+        );
+        console.log("Twilio call triggered to:", formattedPhone);
+      } catch (err) {
+        console.log("Twilio call failed:", err.message);
+      }
+    toast.success(`Welcome aboard, ${formData.username}!`);
+    setFormData({
+      username: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    });
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to register. Try again.");
   }
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-cyan-100 py-8 px-4 flex justify-center">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-xl rounded-lg p-6 w-full max-w-lg"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Register</h2>
-
-        {["username", "email", "phone", "age", "password", "confirmPassword"].map((field) => (
-          <div key={field} className="mb-4">
-            <label className="block text-gray-700 mb-1 capitalize" htmlFor={field}>
-              {field === "confirmPassword" ? "Confirm Password" : field}
-            </label>
-            <input
-              type={field.includes("password") && !showPassword ? "password" : field === "age" ? "number" : "text"}
-              id={field}
-              name={field}
-              value={formData[field]}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 border ${
-                formErrors[field] ? "border-red-500" : "border-gray-300"
-              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400`}
-            />
-            {formErrors[field] && <p className="text-red-500 text-sm mt-1">{formErrors[field]}</p>}
-          </div>
-        ))}
-
-        {/* Optional gender field
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-1">Gender</label>
-          <select
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            className={`w-full px-4 py-2 border ${
-              formErrors.gender ? "border-red-500" : "border-gray-300"
-            } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400`}
-          >
-            <option value="">Select Gender</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="other">Other</option>
-          </select>
-          {formErrors.gender && <p className="text-red-500 text-sm mt-1">{formErrors.gender}</p>}
-        </div> */}
-
-        <div className="mb-6">
-          <button
-            type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="text-blue-600 text-sm"
-          >
-            {showPassword ? "Hide Passwords" : "Show Passwords"}
-          </button>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
-        >
-          Register
-        </button>
-      </form>
-    </div>
-  );
+  setLoading(false);
 };
 
-export default RegisterForm;
+  return (
+    <div className="page-wrapper min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      
+      <div className="sign-up-box mx-auto">
+        <div className="flex justify-center mb-4">
+          <Image src="/images/logo/logo.png" alt="Logo" width={100} height={100} />
+        </div>
+        <h2 className="text-2xl font-bold text-center mb-4 text-white">User Registration</h2>
+        <Toaster position="top-center" reverseOrder={false} />
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+          {[
+            { name: "username", label: "Username" },
+            { name: "email", label: "Email", type: "email" },
+            { name: "phone", label: "Phone" },
+            { name: "password", label: "Password", type: showPassword ? "text" : "password" },
+            { name: "confirmPassword", label: "Confirm Password", type: showPassword ? "text" : "password" },
+          ].map((field) => (
+            <div key={field.name} className="relative">
+              <input
+                type={field.type || "text"}
+                name={field.name}
+                placeholder={field.label}
+                value={formData[field.name]}
+                onChange={handleChange}
+                className={`input-field ${formErrors[field.name] ? "border-red-500" : ""}`}
+                required
+              />
+              {formErrors[field.name] && (
+                <p className="text-red-500 text-sm mt-1">{formErrors[field.name]}</p>
+              )}
+            </div>
+          ))}
+
+          
+
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </button>
+        </form>
+      </div>
+
+      <style jsx>{`
+        .sign-up-box {
+          background: linear-gradient(145deg, #6a0dad, #000);
+          color: #fff;
+          padding: 30px;
+          border-radius: 16px;
+          width: 100%;
+          max-width: 400px;
+          box-shadow: 0 0 20px rgba(106, 13, 173, 0.6);
+        }
+
+        .input-field {
+          width: 100%;
+          padding: 12px;
+          border-radius: 8px;
+          border: 1px solid #6a0dad;
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
+          outline: none;
+          transition: all 0.3s ease;
+          margin-bottom:16px;
+        }
+
+        .input-field::placeholder {
+          color: #ddd;
+        }
+
+        .input-field:focus {
+          border-color: #9b30ff;
+          box-shadow: 0 0 8px rgba(155, 48, 255, 0.6);
+        }
+
+        .submit-btn {
+          width: 100%;
+          padding: 12px;
+          border-radius: 8px;
+          border: none;
+          background: #9b30ff;
+          color: #fff;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+          background: #b84dff;
+          box-shadow: 0 0 10px rgba(184, 77, 255, 0.6);
+        }
+
+        .submit-btn:disabled {
+          background: gray;
+          cursor: not-allowed;
+        }
+      `}</style>
+    </div>
+  );
+}
