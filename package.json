@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "^14.2.3",
+    "axios": "^1.12.2",
     "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.3",
     "clipboard": "^2.0.11",
