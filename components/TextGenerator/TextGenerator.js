@@ -65,6 +65,8 @@ export default function TextGenerator() {
   const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
   const [seoTitle, setSeoTitle] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
 
   useEffect(() => {
@@ -100,7 +102,7 @@ export default function TextGenerator() {
       alert("Please login first.");
       return;
     }
-
+    setLoading(true);
     try {
       const res = await generateBlog({
         ...formData,
@@ -117,7 +119,9 @@ export default function TextGenerator() {
     } catch (err) {
       console.error("Error:", err);
       alert(`Failed to generate blog: ${err.message}`);
-    }
+    }finally {
+    setLoading(false); // stop loader
+  }
   };
 
   const handleUploadToWordPress = async () => {
@@ -255,6 +259,13 @@ export default function TextGenerator() {
           Generate Article
         </button>
       </form>
+      {loading && (
+  <div className="flex justify-center items-center mt-6">
+    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-600"></div>
+    <span className="ml-3 text-indigo-700 font-semibold">Generating article...</span>
+  </div>
+)}
+
 
 
       {/* Generated Article */}
@@ -271,7 +282,7 @@ export default function TextGenerator() {
           <button
             onClick={handleUploadToWordPress}
             disabled={uploading}
-            className="mt-6 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg"
+            className="mt-6 bg-green-600 hover:bg-green-700 text-black font-semibold px-6 py-3 rounded-lg"
           >
             {uploading ? "Uploading..." : "Upload to WordPress"}
           </button>
