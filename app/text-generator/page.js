@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { auth, db } from "@/app/lib/firebaseClient";
-import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { auth, db } from "@/lib/firebase"; // here `db` should be Realtime DB
+import { ref, push, set, serverTimestamp } from "firebase/database";
 import { useAppContext } from "@/context/Context";
 import TextGeneratorInner from "./index";
 
@@ -14,20 +14,17 @@ const TextGeneratorPage = () => {
       const user = auth.currentUser;
       if (!user) return;
 
-      await addDoc(collection(db, "history"), {
-        uid: user.uid,
+      // Add entry in Realtime DB history
+      await push(ref(db, `history/${user.uid}`), {
         page: "SEO Automation",
-        timestamp: serverTimestamp(),
+        timestamp: Date.now(),
       });
 
-      await setDoc(
-        doc(db, "users", user.uid),
-        {
-          lastVisited: "SEO Automation",
-          lastVisitedAt: serverTimestamp(),
-        },
-        { merge: true }
-      );
+      // Update user last visited info
+      await set(ref(db, `users/${user.uid}/lastVisit`), {
+        page: "SEO Automation",
+        lastVisitedAt: Date.now(),
+      });
     };
 
     if (isLoggedIn) {
