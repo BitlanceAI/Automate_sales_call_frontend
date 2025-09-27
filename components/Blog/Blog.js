@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+import { blogsDb } from "@/lib/blogsfirebase"; // ✅ firebase config
 
-import BlogData from "../../data/blog.json";
 import bgShape from "../../public/images/bg/bg-shape-two.png";
 
 import BlogItem from "./BlogItem";
@@ -12,16 +14,85 @@ import BlogTags from "./BlogItems/BlogTags";
 import BrandTwo from "../Brands/Brand-Two";
 
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
+
+useEffect(() => {
+  const postsRef = ref(blogsDb, "posts");
+  const unsubscribe = onValue(postsRef, (snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      const blogsArray = Object.keys(data).map((key) => ({
+        id: key,
+        ...data[key],
+      }));
+      setBlogs(blogsArray);
+
+      // ✅ Extract categories (parse JSON arrays from string safely)
+      const categoryCounts = {};
+      blogsArray.forEach((b) => {
+        let cats = [];
+        try {
+          cats = JSON.parse(b.categories); // your DB has stringified array
+        } catch {
+          if (b.cate) cats = [b.cate];
+        }
+        cats.forEach((c) => {
+          categoryCounts[c] = (categoryCounts[c] || 0) + 1;
+        });
+      });
+      const allCategories = Object.keys(categoryCounts).map((name, idx) => ({
+        id: idx,
+        name,
+        count: categoryCounts[name],
+      }));
+      setCategories(allCategories);
+
+      // ✅ Extract tags (stringified or array)
+      const extractArrayFromString = (str) => {
+        if (!str) return [];
+        if (Array.isArray(str)) return str;
+        try {
+          return JSON.parse(str);
+        } catch {
+          return [String(str)];
+        }
+      };
+
+      const allTags = blogsArray.flatMap((b) =>
+        extractArrayFromString(b.tags)
+      );
+      const uniqueTags = [...new Set(allTags)].map((name, idx) => ({
+        id: idx,
+        name,
+      }));
+      setTags(uniqueTags);
+    } else {
+      setBlogs([]);
+      setCategories([]);
+      setTags([]);
+    }
+  });
+
+  return () => unsubscribe();
+}, []);
+
+
   return (
     <>
       <div className="rainbow-blog-area rainbow-section-gap bg-color-1">
         <div className="container">
           <div className="row row--30">
+            {/* Main Blogs */}
             <div className="col-lg-8">
-              <BlogItem blog={BlogData && BlogData.blog} />
+              <BlogItem blog={blogs} />
             </div>
+
+            {/* Sidebar */}
             <div className="col-lg-4 mt_md--40 mt_sm--40">
               <aside className="rainbow-sidebar">
+                {/* Search */}
                 <div className="rbt-single-widget widget_search mt--40">
                   <div className="inner">
                     <form className="blog-search" action="#">
@@ -32,21 +103,29 @@ const Blog = () => {
                     </form>
                   </div>
                 </div>
+
+                {/* Categories */}
                 <div className="rbt-single-widget widget_categories mt--40">
                   <h3 className="title">Categories</h3>
-                  <Categories category={BlogData && BlogData.categories} />
+                  <Categories category={categories} />
                 </div>
+
+                {/* Recent Posts */}
                 <div className="rbt-single-widget widget_recent_entries mt--40">
                   <h3 className="title">Post</h3>
-                  <BlogPost blogpost={BlogData && BlogData.blog} />
+                  <BlogPost blogpost={blogs} />
                 </div>
+
+                {/* Archives */}
                 <div className="rbt-single-widget widget_archive mt--40">
                   <h3 className="title">Archives</h3>
-                  <Archives blogarc={BlogData && BlogData.blog} />
+                  <Archives blogarc={blogs} />
                 </div>
+
+                {/* Tags */}
                 <div className="rbt-single-widget widget_tag_cloud mt--40">
                   <h3 className="title">Tags</h3>
-                  <BlogTags tags={BlogData && BlogData.tags} />
+                  <BlogTags tags={tags} />
                 </div>
               </aside>
             </div>
@@ -54,6 +133,7 @@ const Blog = () => {
         </div>
       </div>
 
+      {/* Brand section */}
       <div className="rainbow-brand-area rainbow-section-gap bg-color-1">
         <div className="container">
           <div className="row">
@@ -65,21 +145,11 @@ const Blog = () => {
                 data-sal-delay="100"
               >
                 <div className="rating">
-                  <a href="#rating">
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                  </a>
-                  <a href="#rating">
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                  </a>
-                  <a href="#rating">
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                  </a>
-                  <a href="#rating">
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                  </a>
-                  <a href="#rating">
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                  </a>
+                  {[...Array(5)].map((_, i) => (
+                    <a href="#rating" key={i}>
+                      <i className="fa-sharp fa-solid fa-star"></i>
+                    </a>
+                  ))}
                 </div>
                 <p className="subtitle mb--0">Based on 20,000+ reviews on</p>
               </div>

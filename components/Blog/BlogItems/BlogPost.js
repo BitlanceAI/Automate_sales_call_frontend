@@ -4,14 +4,25 @@ import React from "react";
 
 const BlogPost = ({ blogpost }) => {
   return (
-    <>
-      <div className="inner">
-        <ul>
-          {blogpost.slice(0, 3).map((data) => (
+    <div className="inner">
+      <ul>
+        {blogpost.slice(0, 3).map((data) => {
+          const imageSrc =
+            data.image && data.image.trim() !== ""
+              ? data.image
+              : "/images/placeholder.png";
+
+          return (
             <li key={data.id}>
               <div className="list-blog-sm">
                 <div className="img">
-                  <Image src={data.img} width={120} height={85} alt="Blog" />
+                  <Image
+                    src={imageSrc}
+                    width={120}
+                    height={85}
+                    alt={data.title || "Blog"}
+                    
+                  />
                 </div>
                 <div className="content">
                   <Link className="d-block" href={`/blog-detail/${data.id}`}>
@@ -21,10 +32,10 @@ const BlogPost = ({ blogpost }) => {
                 </div>
               </div>
             </li>
-          ))}
-        </ul>
-      </div>
-    </>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

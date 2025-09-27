@@ -4,7 +4,8 @@ const nextConfig = {
     domains: [
       'lh3.googleusercontent.com', // Google profile pics
       'ui-avatars.com',             // Avatar service
-      'res.cloudinary.com'          // Cloudinary images
+      'res.cloudinary.com' ,
+      'drive.google.com'         // Cloudinary images
     ],
     dangerouslyAllowSVG: true,
   },

@@ -15,22 +15,23 @@ const BlogItem = ({ blog }) => {
                     <div className="thumbnail">
                       <Link className="image" href={`/blog-detail/${data.id}`}>
                         <Image
-                          src={data.img}
+                          src={data.image} // ✅ from Firebase
                           width={413}
                           height={281}
-                          alt="Blog Image"
+                          alt={data.title}
                         />
                       </Link>
                     </div>
                     <div className="content">
+                      {/* ✅ Only use what exists in DB */}
                       <ul className="rainbow-meta-list">
                         <li>
                           <i className="fa-sharp fa-regular fa-calendar-days icon-left"></i>{" "}
-                          {data.date}
+                          {data.date || "No date"} {/* fallback */}
                         </li>
                         <li className="separator"></li>
                         <li className="catagory-meta">
-                          <a href="#">{data.cate}</a>
+                          <a href="#">{data.cate || "General"}</a>
                         </li>
                       </ul>
                       <h4 className="title">
@@ -38,13 +39,21 @@ const BlogItem = ({ blog }) => {
                           {data.title}
                         </Link>
                       </h4>
-                      <p className="description">{data.desc}</p>
-                      <a className="btn-read-more border-transparent" href="#">
+                      <p className="description">
+                        {/* show first 150 chars of content */}
+                        {data.content
+                          ? data.content.replace(/<[^>]+>/g, "").substring(0, 150) + "..."
+                          : "No description available"}
+                      </p>
+                      <Link
+                        className="btn-read-more border-transparent"
+                        href={`/blog-detail/${data.id}`}
+                      >
                         <span>
                           Read More{" "}
                           <i className="fa-sharp fa-regular fa-arrow-right"></i>
                         </span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
