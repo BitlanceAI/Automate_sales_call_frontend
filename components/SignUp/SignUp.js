@@ -103,7 +103,7 @@ const handleGoogleSignIn = async () => {
 
     try {
       await createUserWithEmailAndPassword(auth, form.email, form.password);
-      await fetch("https://biltance.app.n8n.cloud/webhook/signup", {
+      await fetch("https://biltance.app.n8n.cloud/webhook/bitlancesignup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
