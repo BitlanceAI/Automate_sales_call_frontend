@@ -5,7 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "@/lib/firebase";
 import { auth } from "@/lib/firebase"; // client-side auth
 
-// ✅ API call to generate blog
+// API call to generate blog
 async function generateBlog(data) {
   if (!auth.currentUser) throw new Error("User not logged in");
   const token = await auth.currentUser.getIdToken();
@@ -27,7 +27,7 @@ async function generateBlog(data) {
   return res.json();
 }
 
-// ✅ API call to upload blog to WordPress
+//  API call to upload blog to WordPress
 async function uploadToWordPress({ wpUrl, wpUser, wpPassword, title, content,imageUrl }) {
   const res = await fetch("/api/blog/uploadToWP", {
     method: "POST",
@@ -292,7 +292,7 @@ export default function TextGenerator() {
       {/* Saved Articles */}
       {user && articles.length > 0 && (
         <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-4 text-indigo-700">📚 My Saved Articles</h2>
+          <h2 className="text-2xl font-bold mb-4 text-indigo-700"> My Saved Articles</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {articles.map((a) => (
               <div key={a.id} className="bg-white p-5 rounded-lg shadow border-l-4 border-indigo-500">
@@ -307,3 +307,4 @@ export default function TextGenerator() {
     </div>
   );
 }
+
