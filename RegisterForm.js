@@ -75,7 +75,7 @@ export default function RegisterForm() {
 
     // n8n webhook integration
     try {
-      await fetch("https://bitlanceai.app.n8n.cloud/webhook/registerlearnai", {
+      await fetch("https://bitlancetechhub.app.n8n.cloud/webhook/registerlearnai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
