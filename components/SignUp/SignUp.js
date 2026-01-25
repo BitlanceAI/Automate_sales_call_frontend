@@ -103,7 +103,7 @@ const handleGoogleSignIn = async () => {
 
     try {
       await createUserWithEmailAndPassword(auth, form.email, form.password);
-      await fetch("https://bitlanceai.app.n8n.cloud/webhook/sign", {
+      await fetch("https://bitlancetechhub.app.n8n.cloud/webhook/signupbitlance", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -333,3 +333,4 @@ const handleGoogleSignIn = async () => {
 };
 
 export default SignUp;
+
