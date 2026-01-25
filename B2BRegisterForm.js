@@ -70,7 +70,7 @@ export default function B2BRegistrationForm() {
       });
 
       try {
-        await fetch("https://bitlanceai.app.n8n.cloud/webhook/b2bregister", {
+        await fetch("https://bitlancetechhub.app.n8n.cloud/webhook/b2bregister", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
