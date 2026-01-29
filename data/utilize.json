@@ -1,0 +1,58 @@
+{
+  "utilize": [
+    {
+      "id": "getstarted_two",
+      "title": "Getting Started with Bitlance AI Tools",
+      "body": [
+        {
+          "id": "seo-tool-sec",
+          "title": "Automate SEO Content Creation",
+          "subTitle": "Boost Rankings with AI-Powered Blogs & Meta Tags",
+          "img": "/images/utilize-img/ut-image-01.png",
+          "desc": "Bitlance's SEO automation tool helps businesses rank higher with AI-generated keyword-rich blogs, titles, meta descriptions, and more. You just enter your niche, and let AI handle the rest.",
+          "list": [
+            { "text": "Generate SEO-optimized blogs, tags, and titles instantly" },
+            { "text": "Supports keyword suggestions and long-tail optimization" },
+            { "text": "Perfect for content marketers, agencies, and founders" }
+          ]
+        },
+        {
+          "id": "smm-tool-sec",
+          "title": "Social Media Marketing Automation",
+          "subTitle": "Consistent & Engaging Posts in Seconds",
+          "img": "/images/utilize-img/ut-image-02.png",
+          "desc": "Create reels captions, carousels, Twitter threads, and promotional content tailored for your brand—on autopilot. Bitlance makes SMM effortless and scalable.",
+          "list": [
+            { "text": "Generate high-converting captions and ad copy" },
+            { "text": "Plan weekly content calendars powered by AI" },
+            { "text": "Ideal for agencies, influencers, and product launches" }
+          ]
+        },
+        {
+          "id": "sales-tool-sec",
+          "title": "Automate Sales Outreach",
+          "subTitle": "Cold Emails, Follow-ups & Voice Scripts Done for You",
+          "img": "/images/utilize-img/ut-image-03.png",
+          "desc": "Speed up your lead generation and conversion with ready-to-send email sequences, WhatsApp pitches, and even AI voice call scripts tailored to your product.",
+          "list": [
+            { "text": "AI generates sales emails, CTAs, and value props" },
+            { "text": "Create multiple versions for A/B testing" },
+            { "text": "Supports custom tone and target persona input" }
+          ]
+        },
+        {
+          "id": "chatbot-tool-sec",
+          "title": "Build Smart Chatbots Instantly",
+          "subTitle": "24/7 Lead Capture and Customer Support",
+          "img": "/images/utilize-img/ut-image-01.png",
+          "desc": "Train a chatbot on your business data (FAQs, docs, URLs) in seconds. Deploy it to websites or WhatsApp without writing a line of code.",
+          "list": [
+            { "text": "Upload docs or URLs to train your bot" },
+            { "text": "Zero-code chatbot creation for lead gen and support" },
+            { "text": "Embed on websites or integrate with WhatsApp in 1 click" }
+          ]
+        }
+      ]
+    }
+  ]
+}

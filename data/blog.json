@@ -1,0 +1,119 @@
+{
+  "blog": [
+    {
+      "id": 1,
+      "img": "/images/blog/blog-01.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "10 Dec 2025",
+      "cate": "SEO Automation",
+      "title": "Supercharge Your Rankings with Bitlance SEO Automation",
+      "desc": "Discover how Bitlance boosts search engine visibility using AI-powered on-page optimization and real-time audits."
+    },
+    {
+      "id": 2,
+      "img": "/images/blog/blog-02.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "30 Nov 2025",
+      "cate": "SMM Automation",
+      "title": "How Bitlance Automates Your Social Media Like a Pro",
+      "desc": "Auto-scheduling, auto-content generation, and performance tracking—here's how Bitlance transforms SMM workflows."
+    },
+    {
+      "id": 3,
+      "img": "/images/blog/blog-03.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "20 Nov 2025",
+      "cate": "Sales Automation",
+      "title": "AI Sales Calls: Bitlance Closes More Deals with Less Effort",
+      "desc": "Using AI voice agents, Bitlance automates outbound calls, follow-ups, and CRM updates without human intervention."
+    },
+    {
+      "id": 4,
+      "img": "/images/blog/blog-04.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "01 Nov 2025",
+      "cate": "Chatbot Automation",
+      "title": "Turn Visitors into Customers with Smart AI Chatbots",
+      "desc": "Bitlance Chatbot Automation handles FAQs, lead capture, and support 24/7—zero coding needed."
+    },
+    {
+      "id": 5,
+      "img": "/images/blog/blog-05.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "25 Oct 2025",
+      "cate": "AI Technology",
+      "title": "Bitlance Behind the Scenes: Our AI Stack Explained",
+      "desc": "Explore the architecture powering Bitlance's automation—featuring GPT, Whisper, Google TTS, and Twilio."
+    },
+    {
+      "id": 6,
+      "img": "/images/blog/blog-06.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "10 Oct 2025",
+      "cate": "Marketing",
+      "title": "Marketing on Autopilot: Bitlance’s Smart Automation Toolkit",
+      "desc": "From content to customer journey flows, here's how you can automate everything and boost ROI."
+    },
+    {
+      "id": 7,
+      "img": "/images/blog/blog-07.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "25 Sept 2025",
+      "cate": "Sales Automation",
+      "title": "Case Study: Lodha Builders Generated 3x More Leads Using Bitlance",
+      "desc": "See how real estate sales soared using Bitlance's AI voice bot and Airtable integration."
+    },
+    {
+      "id": 8,
+      "img": "/images/blog/blog-08.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "10 Sept 2025",
+      "cate": "SMM Automation",
+      "title": "Scheduling Reels & Tweets with AI: Bitlance's SMM in Action",
+      "desc": "Automate viral content generation, caption writing, and analytics with just a few clicks."
+    },
+    {
+      "id": 9,
+      "img": "/images/blog/blog-09.png",
+      "blogImg": "/images/blog/blog-detailes-01.png",
+      "blogImg2": "/images/blog/blog-detailes-02.png",
+      "date": "01 Sept 2025",
+      "cate": "Company",
+      "title": "The Bitlance Story: From a College Project to a SaaS Platform",
+      "desc": "How a student-led project evolved into a scalable AI automation suite used by startups and businesses alike."
+    }
+  ],
+  "categories": [
+    { "name": "SEO Automation", "num": 1 },
+    { "name": "SMM Automation", "num": 2 },
+    { "name": "Sales Automation", "num": 2 },
+    { "name": "Chatbot Automation", "num": 1 },
+    { "name": "AI Technology", "num": 1 },
+    { "name": "Marketing", "num": 1 },
+    { "name": "Company", "num": 1 }
+  ],
+  "tags": [
+    { "name": "Bitlance" },
+    { "name": "Automation" },
+    { "name": "SEO" },
+    { "name": "SMM" },
+    { "name": "AI Voice Bot" },
+    { "name": "Chatbot" },
+    { "name": "Lead Generation" },
+    { "name": "Twilio" },
+    { "name": "Whisper" },
+    { "name": "GPT-4" },
+    { "name": "TTS" },
+    { "name": "OpenAI" },
+    { "name": "Sales" },
+    { "name": "Marketing" }
+  ]
+}
